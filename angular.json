@@ -27,10 +27,25 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@fortawesome/fontawesome-free/webfonts",
+                "output": "webfonts"
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/@fontsource/roboto/300.css",
+              "node_modules/@fontsource/roboto/400.css",
+              "node_modules/@fontsource/roboto/500.css",
+              "node_modules/@fontsource/roboto/700.css",
               "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -46,13 +61,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "1MB"
                 }
               ],
               "outputHashing": "all"

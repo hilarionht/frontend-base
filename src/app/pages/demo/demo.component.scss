@@ -1,0 +1,126 @@
+.demo-page {
+  padding: var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// ── Header ──────────────────────────────────────────────
+.demo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-5);
+  border-bottom: 2px solid var(--color-border-subtle);
+}
+
+.demo-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.demo-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin: var(--space-1) 0 0;
+}
+
+// ── Secciones ───────────────────────────────────────────
+.demo-section {
+  margin-bottom: var(--space-8);
+}
+
+.section-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+
+  i { color: var(--color-primary-medium); }
+}
+
+.demo-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--color-text-muted);
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+// ── Design Tokens ────────────────────────────────────────
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+
+.token-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-body);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border-default);
+}
+
+.token-swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.token-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.token-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.token-var {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Tipografía ──────────────────────────────────────────
+.typo-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.typo-scale > div {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+
+  &:last-child { border-bottom: none; }
+}
+
+.typo-size-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  width: 52px;
+  flex-shrink: 0;
+}

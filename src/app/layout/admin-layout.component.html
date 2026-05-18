@@ -1,0 +1,25 @@
+<div id="main-wrapper">
+
+  <app-topbar
+    [isMiniSidebar]="isMiniSidebar()"
+    (toggleSidebar)="onToggleSidebar()"
+    (toggleMobileNav)="onToggleMobileNav()"
+  />
+  <app-sidebar
+    [role]="userRole"
+    [isMini]="isMiniSidebar()"
+    [isMobileNavOpen]="isMobileNavOpen()"
+    (navItemSelected)="onNavItemSelected()">
+  </app-sidebar>
+
+  <div class="page-wrapper">
+    <div class="container-fluid">
+      <app-page-header [title]="currentTitle" [showDivider]="false" />
+      <main class="admin-main">
+        <router-outlet />
+      </main>
+    </div>
+    <app-footer />
+  </div>
+
+</div>

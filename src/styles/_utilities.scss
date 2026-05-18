@@ -1,0 +1,82 @@
+// ============================================================
+// _utilities.scss — Clases utilitarias y botones de acción
+// Movido desde styles.scss.
+// ============================================================
+
+// ── Tamaños de iconos ─────────────────────────────────────
+.icon-xl   { font-size: 3rem; }
+.icon-lg   { font-size: 2rem; }
+.icon-md   { font-size: 1.5rem; }
+.icon-sm   { font-size: 1rem; }
+
+.table-text-sm { font-size: var(--font-size-base) !important; }
+.table-text-xs { font-size: var(--font-size-sm)   !important; }
+
+// ── Cursor ───────────────────────────────────────────────
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+
+// ── Texto ────────────────────────────────────────────────
+.text-uppercase { text-transform: uppercase; }
+.text-title     { color: var(--color-text-title); }
+
+// ── Fondos ───────────────────────────────────────────────
+.bg-verified     { background-color: var(--color-bg-verified);    }
+.bg-pld-warning  { background-color: var(--color-bg-pld-warning); }
+.bg-pld-success  { background-color: var(--color-bg-pld-success); }
+.bg-white        { background-color: var(--color-white); }
+.bg-light-yellow { background-color: lightyellow; }
+
+// ── Tablas ───────────────────────────────────────────────
+.col-shrink { width: 1%; white-space: nowrap; }
+.no-wrap    { white-space: nowrap; }
+
+// ── Gráficas Highcharts ───────────────────────────────────
+.h-chart    { height: 400px; }
+.h-chart-lg { position: relative; height: 450px; width: 100%; }
+.h-bar      { height: 25px; }
+
+// ── Dimensiones y posicionamiento ────────────────────────
+.min-w-action    { min-width: 130px; }
+.min-w-action-lg { min-width: 140px; }
+.max-w-modal     { max-width: 90%; }
+.toggle-size     { width: 3em; height: 1.5em; }
+.dropdown-anchor { position: absolute; top: 100%; left: 0; z-index: 1000; }
+
+// ── Botones de acción circular (tablas y listas) ──────────
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+
+  i { line-height: 1; }
+
+  &:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+  &:disabled             { opacity: 0.5; cursor: not-allowed; }
+}
+
+.edit-btn    { background: var(--color-primary-accent); }
+.edit-btn:hover:not(:disabled)    { background: var(--color-primary-medium); }
+
+.delete-btn  { background: var(--color-danger); }
+.delete-btn:hover:not(:disabled)  { background: var(--color-danger-dark); }
+
+.config-btn  { background: var(--color-purple); }
+.config-btn:hover:not(:disabled)  { background: var(--color-purple-dark); }
+
+.info-btn    { background: var(--color-primary-accent); }
+.info-btn:hover:not(:disabled)    { background: var(--color-primary-medium); }
+
+.warning-btn { background: var(--color-warning); }
+.warning-btn:hover:not(:disabled) { background: var(--color-warning-dark); }
+
+.success-btn { background: var(--color-success); }
+.success-btn:hover:not(:disabled) { background: var(--color-success-dark); }

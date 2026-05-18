@@ -1,0 +1,125 @@
+// ============================================================
+// _layout.scss — Estructura principal del layout de la app
+//
+// NUEVO: Reemplaza el CSS de posicionamiento que antes
+// proveía el bundle precompilado style.min.css (AdminLTE).
+//
+// Implementa el patrón fixed-header + fixed-sidebar con:
+//   - .topbar      → barra superior fija (z-index 50)
+//   - .left-sidebar → panel lateral fijo (z-index 20)
+//   - .page-wrapper → área de contenido con offsets
+//
+// Body classes usadas (aplicadas por AdminLayoutComponent):
+//   skin-blue    → tema azul corporativo
+//   fixed-layout → header y sidebar fijos
+//   mini-sidebar → sidebar colapsado (60px)
+//   show-sidebar → sidebar visible en mobile
+// ============================================================
+
+// ── Wrapper raíz del layout admin ────────────────────────
+#main-wrapper {
+  position: relative;
+}
+
+// ── Topbar — barra superior fija ─────────────────────────
+// El gradiente de fondo lo añade .skin-blue .topbar en
+// admin-layout.component.scss (ViewEncapsulation.None).
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+// ── Sidebar — panel lateral fijo ─────────────────────────
+.left-sidebar {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  z-index: 20;
+  background-color: var(--sidebar-bg);
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+// ── Área de contenido — offset según estado del sidebar ──
+.page-wrapper {
+  margin-left: var(--sidebar-width);
+  padding-top: var(--header-height);
+  transition: margin-left 0.3s ease;
+}
+
+// ── Estado mini-sidebar: sidebar colapsado a 60px ─────────
+// Activado al cargar (<1170px) o al hacer clic en el toggle.
+body.mini-sidebar {
+  .left-sidebar {
+    width: 60px;
+
+    // Expande al hacer hover para mostrar labels sin tener que clic
+    &:hover {
+      width: var(--sidebar-width);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .page-wrapper {
+    margin-left: 60px;
+  }
+}
+
+// ── Fila de títulos de página ─────────────────────────────
+// Reproduce el comportamiento AdminLTE 2.x: banda blanca con
+// borde inferior que separa visualmente el título de la tarjeta.
+.page-titles {
+  background: var(--color-white);
+  padding: 10px 15px;
+  margin: 0 -15px 20px -15px;   // compensa el padding del container-fluid
+  border-bottom: 1px solid var(--color-border);
+
+  h4.text-themecolor {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-heading);
+    margin: 0;
+  }
+}
+
+// ── Responsive: mobile (<768px) ──────────────────────────
+@media (max-width: 767px) {
+  // Sidebar oculto fuera de pantalla por defecto
+  .left-sidebar {
+    left: calc(-1 * var(--sidebar-width));
+    width: var(--sidebar-width) !important;
+
+    // Sin hover-expand en mobile — se controla por JS con show-sidebar
+    &:hover {
+      width: var(--sidebar-width);
+      box-shadow: none;
+    }
+  }
+
+  // body.show-sidebar → sidebar visible (toggle desde topbar)
+  body.show-sidebar .left-sidebar {
+    left: 0;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.35);
+  }
+
+  .page-wrapper {
+    margin-left: 0 !important;
+  }
+
+  // Overlay semitransparente detrás del sidebar cuando está abierto
+  body.show-sidebar::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 15;
+    pointer-events: none;
+  }
+}

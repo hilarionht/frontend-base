@@ -1,0 +1,41 @@
+// ============================================================
+// _waves.scss — Efecto ripple en CSS puro
+//
+// NUEVO: Reemplaza la librería waves.js
+// (assets/dist/js/waves.js — archivo que no existe).
+//
+// Las clases .waves-effect y .waves-dark están aplicadas en
+// el HTML del sidebar y del topbar. Este CSS provee una
+// aproximación visual del efecto sin ningún JavaScript.
+// ============================================================
+
+.waves-effect {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    pointer-events: none;
+    transition: background 0.35s ease;
+    border-radius: inherit;
+  }
+
+  &:active::after {
+    background: rgba(255, 255, 255, 0.15);
+    transition: none;
+  }
+}
+
+// Variante oscura: para elementos sobre fondos claros
+.waves-dark.waves-effect:active::after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+// El sidebar usa fondos oscuros → efecto más sutil en blanco
+.left-sidebar .waves-effect:active::after {
+  background: rgba(255, 255, 255, 0.12);
+}

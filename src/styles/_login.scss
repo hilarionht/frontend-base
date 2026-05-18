@@ -1,0 +1,109 @@
+// ============================================================
+// _login.scss — Estilos de la página de autenticación
+//
+// NUEVO: Reemplaza los siguientes archivos que se cargaban
+// dinámicamente y no existían en el proyecto:
+//   - assets/dist/css/pages/other-pages.css
+//   - assets/dist/css/pages/login-register-lock.css
+//
+// Estiliza la estructura HTML de login.component.html:
+//   div.login-register[style="background-image:..."]
+//     div.login-box.card
+//       div.card-body
+//         form.form-horizontal.form-material
+//
+// Body classes usadas (aplicadas por LoginLayoutComponent):
+//   skin-default   → layout sin sidebar
+//   card-no-border → cards sin borde (legacy AdminLTE)
+// ============================================================
+
+// ── Body de la vista de login ─────────────────────────────
+body.skin-default {
+  background: var(--color-bg-body);
+}
+
+// Clase legacy: suprime bordes en todas las cards
+body.card-no-border .card {
+  border: none !important;
+}
+
+// ── Wrapper del router-outlet de login ───────────────────
+#wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Fondo con imagen de portada + overlay ─────────────────
+// El background-image se aplica inline desde el HTML.
+// El ::before provee un overlay oscuro para legibilidad.
+.login-register {
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--space-4);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.52);
+    z-index: 0;
+  }
+}
+
+// ── Card de login ─────────────────────────────────────────
+.login-box {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--border-radius-xl) !important;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4) !important;
+  background: var(--color-white);
+
+  // Neutraliza el hover-lift de la card global (no aplica aquí)
+  &:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4) !important;
+    transform: none;
+  }
+
+  .card-body {
+    padding: var(--space-6);
+  }
+
+  // Logo principal
+  img[alt="Profuturo"] {
+    height: 56px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-heading);
+  }
+}
+
+// ── Responsive: pantallas pequeñas ───────────────────────
+@media (max-width: 480px) {
+  .login-register {
+    align-items: flex-start;
+    padding-top: var(--space-8);
+  }
+
+  .login-box {
+    max-width: 100%;
+
+    .card-body {
+      padding: var(--space-4);
+    }
+  }
+}

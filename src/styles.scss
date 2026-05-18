@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+// ============================================================
+// styles.scss — Entry point de estilos globales
+//
+// Único archivo listado en angular.json > styles[].
+// Organizado en partials por responsabilidad dentro de
+// src/styles/. El orden de @use determina la cascada CSS.
+//
+// Partials existentes (tokens, reset, overrides, utilities):
+//   movidos desde este archivo para modularización.
+//
+// Partials nuevos (layout, sidebar, topbar, waves, login):
+//   reemplazan el bundle precompilado style.min.css y los
+//   archivos CSS dinámicos de la versión legacy.
+// ============================================================
+
+// ── 1. Design tokens (CSS Custom Properties en :root) ────
+@use './styles/tokens';
+
+// ── 2. Reset base y estilos de elementos nativos ─────────
+@use './styles/reset';
+
+// ── 3. Overrides de componentes Bootstrap 5.3 ────────────
+@use './styles/overrides';
+
+// ── 4. Clases utilitarias y botones de acción ─────────────
+@use './styles/utilities';
+
+// ── 5. Estructura del layout (topbar + sidebar + content) ─
+@use './styles/layout';
+
+// ── 6. Navegación del sidebar ─────────────────────────────
+@use './styles/sidebar';
+
+// ── 7. Barra superior (topbar/navbar) ─────────────────────
+@use './styles/topbar';
+
+// ── 8. Efecto ripple CSS (reemplaza waves.js) ─────────────
+@use './styles/waves';
+
+// ── 9. Página de autenticación / login ───────────────────
+@use './styles/login';

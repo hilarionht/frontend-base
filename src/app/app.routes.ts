@@ -1,3 +1,95 @@
 import { Routes } from '@angular/router';
+import { LoginLayoutComponent } from './layout/login-layout.component';
+import { AdminLayoutComponent } from './layout/admin-layout.component';
+import { authGuard } from './guards/auth.guard';
+import { noAuthGuard } from './guards/no-auth.guard';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+
+  // {
+  //   path: 'admin',
+  //   canActivate: [authGuard],
+  //   loadChildren: () => import('./features/admin/admin.routes'),
+  // },
+  // {
+  //   path: 'configuracion',
+  //   canActivate: [authGuard],
+  //   loadChildren: () => import('./pages/configuracion/configuracion.routes'),
+  // },
+  // {
+  //   path: 'operaciones',
+  //   canActivate: [authGuard],
+  //   loadChildren: () => import('./pages/operaciones/operaciones.routes'),
+  // },
+  // {
+  //   path: 'procesos',
+  //   canActivate: [authGuard],
+  //   loadChildren: () => import('./pages/procesos/procesos.routes'),
+  // },
+  // {
+  //   path: 'catalogos',
+  //   canActivate: [authGuard],
+  //   loadChildren: () => import('./features/catalogos/catalogos.routes'),
+  // },
+  // {
+  //   path: 'reportes',
+  //   canActivate: [authGuard],
+  //   loadChildren: () => import('./pages/reportes/reportes.routes'),
+  // },
+
+  {
+    path: 'auth',
+    component: LoginLayoutComponent,
+    canActivate: [noAuthGuard],
+    children: [
+      { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./pages/auth/login/login.component').then((m) => m.LoginComponent),
+      },
+    ],
+  },
+
+  {
+    path: 'demo',
+    loadComponent: () => import('./pages/demo/demo.component').then((m) => m.DemoComponent),
+  },
+
+  {
+    path: 'layout-preview',
+    component: AdminLayoutComponent,
+    data: { role: 'User' },
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/demo/demo.component').then((m) => m.DemoComponent),
+        data: { title: 'Layout Preview' },
+      },
+      {
+        // Captura cualquier sub-ruta del menú de demo (contratos/lista, clientes/alta, etc.)
+        // y muestra el mismo DemoComponent como contenido de la vista previa.
+        path: '**',
+        loadComponent: () => import('./pages/demo/demo.component').then((m) => m.DemoComponent),
+        data: { title: 'Layout Preview' },
+      },
+    ],
+  },
+
+  { path: 'logout', redirectTo: '/auth/login', pathMatch: 'full' },
+  {
+    path: 'unauthorized',
+    loadComponent: () =>
+      import('./pages/auth/unauthorized/unauthorized.component').then(
+        (m) => m.UnauthorizedComponent,
+      ),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/auth/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent,
+      ),
+  },
+];

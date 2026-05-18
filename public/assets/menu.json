@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dashboard",
+    "label": "Dashboard",
+    "icon": "fas fa-tachometer-alt",
+    "route": "/layout-preview",
+    "order": 1,
+    "children": []
+  },
+  {
+    "id": "contratos",
+    "label": "Contratos",
+    "icon": "fas fa-file-contract",
+    "order": 2,
+    "children": [
+      { "label": "Lista de Contratos", "route": "/layout-preview/contratos/lista",  "icon": "fas fa-list",     "order": 1 },
+      { "label": "Nuevo Contrato",     "route": "/layout-preview/contratos/nuevo",  "icon": "fas fa-plus",     "order": 2 }
+    ]
+  },
+  {
+    "id": "clientes",
+    "label": "Clientes",
+    "icon": "fas fa-users",
+    "order": 3,
+    "children": [
+      { "label": "Directorio",   "route": "/layout-preview/clientes/directorio", "icon": "fas fa-address-book", "order": 1 },
+      { "label": "Alta Cliente", "route": "/layout-preview/clientes/alta",       "icon": "fas fa-user-plus",    "order": 2 }
+    ]
+  },
+  {
+    "id": "operaciones",
+    "label": "Operaciones",
+    "icon": "fas fa-exchange-alt",
+    "order": 4,
+    "children": [
+      { "label": "Depósitos",    "route": "/layout-preview/operaciones/depositos",    "icon": "fas fa-arrow-down",  "order": 1 },
+      { "label": "Retiros",      "route": "/layout-preview/operaciones/retiros",      "icon": "fas fa-arrow-up",    "order": 2 },
+      { "label": "Rendimientos", "route": "/layout-preview/operaciones/rendimientos", "icon": "fas fa-chart-line",  "order": 3 }
+    ]
+  },
+  {
+    "id": "reportes",
+    "label": "Reportes",
+    "icon": "fas fa-chart-bar",
+    "order": 5,
+    "children": [
+      { "label": "Por Período",  "route": "/layout-preview/reportes/periodo",  "icon": "fas fa-calendar-alt", "order": 1 },
+      { "label": "Por Producto", "route": "/layout-preview/reportes/producto", "icon": "fas fa-box",          "order": 2 }
+    ]
+  },
+  {
+    "id": "configuracion",
+    "label": "Configuración",
+    "icon": "fas fa-cog",
+    "route": "/layout-preview/configuracion",
+    "order": 6,
+    "children": []
+  }
+]

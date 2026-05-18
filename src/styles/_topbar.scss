@@ -1,0 +1,211 @@
+// ============================================================
+// _topbar.scss — Barra superior de navegación
+//
+// NUEVO: Reemplaza los estilos del navbar de AdminLTE.
+// Estiliza la estructura HTML de topbar.component.html:
+//   header.topbar
+//     nav.navbar.top-navbar.navbar-dark
+//       div.navbar-header  ← área del logo (alineada al sidebar)
+//         a.navbar-brand
+//       div.navbar-collapse
+//         ul.navbar-nav.me-auto
+//           a.sidebartoggler / a.nav-toggler
+//         ul.navbar-nav.my-lg-0
+//           li.u-pro.dropdown
+//             a.profile-pic.dropdown-toggle
+//
+// El gradiente de fondo lo aplica .skin-blue .topbar en
+// admin-layout.component.scss (ViewEncapsulation.None).
+// ============================================================
+
+// ── Estructura del navbar ─────────────────────────────────
+.top-navbar {
+  height: var(--header-height);
+  padding: 0;
+  flex-wrap: nowrap !important;
+  align-items: center;
+
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+    border-top: none !important;
+  }
+
+  .navbar-nav {
+    align-items: center;
+    border-top: none !important;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    border-top: none !important;
+  }
+}
+
+// ── Área del logo — ancho alineado con el sidebar ─────────
+.navbar-header {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: width 0.3s ease, min-width 0.3s ease;
+}
+
+// Reduce el header del logo cuando el sidebar está colapsado
+body.mini-sidebar .navbar-header {
+  width: var(--mini-sidebar-width);
+  min-width: var(--mini-sidebar-width);
+}
+
+.navbar-brand {
+  display: flex !important;
+  align-items: center;
+  gap: var(--space-3);
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  padding: 0 !important;
+
+  &:hover {
+    color: var(--color-white) !important;
+    opacity: 0.9;
+  }
+
+  img.light-logo {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .font-bold {
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+// ── Botones de toggle del sidebar ────────────────────────
+.sidebartoggler,
+.nav-toggler {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 1.1rem;
+  padding: var(--space-2) var(--space-3) !important;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: var(--transition-fast);
+
+  &:hover {
+    color: var(--color-white) !important;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Bootstrap agrega ::after caret a todo .dropdown-toggle.
+// Ya tenemos el <i class="fa fa-angle-down"> en el template — lo eliminamos.
+.profile-pic.dropdown-toggle::after {
+  display: none !important;
+}
+
+// ── Perfil del usuario ────────────────────────────────────
+.profile-pic {
+  display: flex !important;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: var(--border-radius);
+  transition: var(--transition-fast);
+
+  &:hover {
+    color: var(--color-white) !important;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  // Avatar del usuario
+  img:first-of-type {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--border-radius-full);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  // Logo de Anfexi en el nav
+  img.ms-2 {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+  }
+
+  .hidden-md-down {
+    font-size: var(--font-size-base);
+    white-space: nowrap;
+
+    .fa-angle-down {
+      font-size: var(--font-size-xs);
+      margin-left: 2px;
+      opacity: 0.75;
+    }
+  }
+}
+
+// ── Dropdown del menú de usuario ─────────────────────────
+.u-pro .dropdown-menu {
+  min-width: 185px;
+  border: none;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-2) 0;
+  margin-top: 4px;
+
+  .dropdown-item {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    transition: var(--transition-fast);
+
+    &:hover,
+    &:focus {
+      background: var(--color-bg-subtle);
+      color: var(--color-primary);
+    }
+
+    i {
+      width: 16px;
+      text-align: center;
+      margin-right: var(--space-2);
+      opacity: 0.75;
+    }
+  }
+}
+
+// ── Animación del dropdown (reemplaza jQuery flipInY) ─────
+// La clase .animated.flipInY era de AdminLTE + animate.css.
+// Aquí se reemplaza con una animación CSS ligera.
+.dropdown-menu.animated {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+.dropdown-menu.flipInY {
+  animation-name: _topbar-dropdown-in;
+}
+
+@keyframes _topbar-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,388 @@
+<div class="demo-page">
+
+  <!-- ── Page Header ────────────────────────────────────────── -->
+  <app-page-header
+    title="Design System"
+    subtitle="Vista previa de componentes compartidos, tokens y librerías"
+    icon="fa-solid fa-palette">
+    <div actions class="d-flex align-items-center gap-2">
+      <app-badge variant="primary"   [pill]="true">Angular 21</app-badge>
+      <app-badge variant="secondary" [pill]="true">Bootstrap 5.3</app-badge>
+      <app-badge variant="dark"      [pill]="true">Highcharts</app-badge>
+    </div>
+  </app-page-header>
+
+  <!-- ── KPI Cards ─────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-chart-line me-2"></i>StatCards — KPIs</h2>
+    <div class="row g-3">
+      @for (kpi of kpis; track kpi.label) {
+        <div class="col-12 col-sm-6 col-xl-3">
+          <app-stat-card
+            [label]="kpi.label"
+            [value]="kpi.value"
+            [icon]="kpi.icon"
+            [color]="kpi.color"
+            [sublabel]="kpi.sublabel"
+            [trend]="kpi.trend">
+          </app-stat-card>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ── Gráfica + Tabla con app-badge ─────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-table me-2"></i>Gráfica + Tabla — BadgeComponent</h2>
+    <div class="row g-3">
+
+      <div class="col-12 col-lg-7">
+        <app-card title="Cartera Mensual" icon="fa-solid fa-chart-area" variant="primary">
+          <highcharts-chart
+            [options]="chartOptions"
+            style="width:100%; display:block;">
+          </highcharts-chart>
+        </app-card>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <app-card title="Contratos Recientes" icon="fa-solid fa-file-contract"
+                  variant="success" [badge]="rows.length" bodyPadding="none">
+          <table class="table table-hover mb-0 table-text-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Monto</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of rows; track row.id) {
+                <tr>
+                  <td class="text-primary fw-semibold">{{ row.id }}</td>
+                  <td class="no-wrap">{{ row.cliente }}</td>
+                  <td class="no-wrap">{{ row.monto }}</td>
+                  <td>
+                    <app-badge [variant]="getBadgeVariant(row.estado)" [pill]="true">
+                      {{ row.estado }}
+                    </app-badge>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </app-card>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── BadgeComponent ─────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-tag me-2"></i>BadgeComponent — <code>app-badge</code></h2>
+    <app-card title="Variantes, pill y tamaños" icon="fa-solid fa-swatchbook" variant="info">
+
+      <p class="demo-label">Variantes — <code>[variant]</code></p>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <app-badge variant="primary">primary</app-badge>
+        <app-badge variant="secondary">secondary</app-badge>
+        <app-badge variant="success">success</app-badge>
+        <app-badge variant="danger">danger</app-badge>
+        <app-badge variant="warning">warning</app-badge>
+        <app-badge variant="info">info</app-badge>
+        <app-badge variant="dark">dark</app-badge>
+        <app-badge variant="light">light</app-badge>
+      </div>
+
+      <p class="demo-label">Pill — <code>[pill]="true"</code></p>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <app-badge variant="primary"   [pill]="true">primary</app-badge>
+        <app-badge variant="success"   [pill]="true">Activo</app-badge>
+        <app-badge variant="warning"   [pill]="true">Vencido</app-badge>
+        <app-badge variant="danger"    [pill]="true">En Mora</app-badge>
+        <app-badge variant="secondary" [pill]="true">Cancelado</app-badge>
+      </div>
+
+      <p class="demo-label">Tamaño — <code>[size]="'sm'"</code></p>
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <app-badge variant="primary">md (default)</app-badge>
+        <app-badge variant="primary" size="sm">sm</app-badge>
+        <app-badge variant="success" [pill]="true">md pill</app-badge>
+        <app-badge variant="success" size="sm" [pill]="true">sm pill</app-badge>
+      </div>
+
+    </app-card>
+  </section>
+
+  <!-- ── SpinnerComponent ───────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-spinner me-2"></i>SpinnerComponent — <code>app-spinner</code></h2>
+    <app-card title="Tamaños, colores y tipos" icon="fa-solid fa-circle-notch" variant="secondary">
+
+      <p class="demo-label">Tamaños — <code>[size]="'sm' | 'md' | 'lg'"</code></p>
+      <div class="d-flex flex-wrap gap-4 align-items-center mb-3">
+        <div class="text-center">
+          <app-spinner size="sm" variant="primary" />
+          <div class="demo-label mt-1">sm</div>
+        </div>
+        <div class="text-center">
+          <app-spinner size="md" variant="primary" />
+          <div class="demo-label mt-1">md</div>
+        </div>
+        <div class="text-center">
+          <app-spinner size="lg" variant="primary" />
+          <div class="demo-label mt-1">lg</div>
+        </div>
+      </div>
+
+      <p class="demo-label">Variantes de color — <code>[variant]</code></p>
+      <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
+        <app-spinner variant="primary"   />
+        <app-spinner variant="success"   />
+        <app-spinner variant="warning"   />
+        <app-spinner variant="danger"    />
+        <app-spinner variant="info"      />
+        <app-spinner variant="secondary" />
+        <app-spinner variant="dark"      />
+      </div>
+
+      <p class="demo-label">Tipo grow — <code>[type]="'grow'"</code></p>
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+        <app-spinner type="grow" size="sm" variant="primary"  />
+        <app-spinner type="grow"           variant="success"  />
+        <app-spinner type="grow"           variant="danger"   />
+        <app-spinner type="grow" size="sm" variant="warning"  />
+      </div>
+
+    </app-card>
+  </section>
+
+  <!-- ── AlertComponent ─────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-circle-info me-2"></i>AlertComponent — <code>app-alert</code></h2>
+    <app-card title="Variantes, título y dismiss" icon="fa-solid fa-bell" variant="warning">
+      <div class="d-flex flex-column gap-2">
+
+        <app-alert variant="info" title="Información">
+          Los datos de cartera se actualizan automáticamente cada 5 minutos.
+        </app-alert>
+
+        <app-alert variant="success">
+          El contrato <strong>C-0041</strong> fue procesado y firmado correctamente.
+        </app-alert>
+
+        <app-alert variant="warning" title="Atención" [dismissible]="true">
+          Hay <strong>37</strong> contratos con vencimiento esta semana que requieren atención.
+        </app-alert>
+
+        <app-alert variant="danger" title="Error de conexión" [dismissible]="true">
+          No se pudo conectar con el servidor de validación. Intente nuevamente.
+        </app-alert>
+
+        <app-alert variant="primary" icon="fa-solid fa-shield-halved">
+          Autenticación de dos factores activa. Icono personalizado vía <code>[icon]</code>.
+        </app-alert>
+
+      </div>
+    </app-card>
+  </section>
+
+  <!-- ── Botones ────────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-computer-mouse me-2"></i>Botones — <code>app-button</code> y <code>app-action-button</code></h2>
+    <div class="row g-3">
+
+      <div class="col-12 col-lg-8">
+        <app-card title="GenericButtonComponent — app-button" icon="fa-solid fa-rectangle-ad" variant="primary">
+
+          <p class="demo-label">Variantes — <code>[variant]</code></p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <app-button label="Guardar"   icon="fa-solid fa-save"  variant="primary"   />
+            <app-button label="Confirmar" icon="fa-solid fa-check" variant="success"   />
+            <app-button label="Editar"    icon="fa-solid fa-pen"   variant="warning"   />
+            <app-button label="Eliminar"  icon="fa-solid fa-trash" variant="danger"    />
+            <app-button label="Info"      icon="fa-solid fa-info"  variant="info"      />
+            <app-button label="Cancelar"  icon="fa-solid fa-xmark" variant="secondary" />
+            <app-button label="Outline"   icon="fa-solid fa-eye"   variant="outline"   />
+          </div>
+
+          <p class="demo-label">Estado loading — <code>[loading]="true"</code></p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <app-button label="Guardando..."  variant="primary" [loading]="true" />
+            <app-button label="Procesando"   variant="success" [loading]="true" />
+            <app-button label="Exportando"   variant="info"    [loading]="true" />
+          </div>
+
+          <p class="demo-label">Solo ícono / deshabilitado</p>
+          <div class="d-flex flex-wrap gap-2">
+            <app-button icon="fa-solid fa-plus"   variant="success"   label="" />
+            <app-button icon="fa-solid fa-filter" variant="secondary" label="" />
+            <app-button label="Disabled" variant="primary" [disabled]="true" />
+          </div>
+
+        </app-card>
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <app-card title="ActionButtonComponent — app-action-button" icon="fa-solid fa-bolt" variant="info">
+
+          <p class="demo-label">Variantes de acción</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <app-action-button icon="fa-solid fa-pen"   variant="edit"    title="Editar"     />
+            <app-action-button icon="fa-solid fa-trash" variant="delete"  title="Eliminar"   />
+            <app-action-button icon="fa-solid fa-gear"  variant="config"  title="Configurar" />
+            <app-action-button icon="fa-solid fa-eye"   variant="info"    title="Ver"        />
+            <app-action-button icon="fa-solid fa-bell"  variant="warning" title="Alertar"    />
+            <app-action-button icon="fa-solid fa-check" variant="success" title="Aprobar"    />
+          </div>
+
+          <p class="demo-label">En contexto de tabla</p>
+          <div class="d-flex gap-1">
+            <app-action-button icon="fa-solid fa-pen"   variant="edit"   title="Editar"   />
+            <app-action-button icon="fa-solid fa-eye"   variant="info"   title="Ver"      />
+            <app-action-button icon="fa-solid fa-trash" variant="delete" title="Eliminar" />
+          </div>
+
+        </app-card>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Notificaciones toastr ──────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-bell me-2"></i>ngx-toastr — Notificaciones</h2>
+    <app-card title="Toast notifications" icon="fa-solid fa-comment-dots" variant="dark">
+      <div class="d-flex flex-wrap gap-2">
+        <app-button label="Success" icon="fa-solid fa-circle-check"         variant="success" (clicked)="showToast('success')" />
+        <app-button label="Error"   icon="fa-solid fa-circle-xmark"         variant="danger"  (clicked)="showToast('error')"   />
+        <app-button label="Warning" icon="fa-solid fa-triangle-exclamation" variant="warning" (clicked)="showToast('warning')" />
+        <app-button label="Info"    icon="fa-solid fa-circle-info"          variant="info"    (clicked)="showToast('info')"    />
+      </div>
+    </app-card>
+  </section>
+
+  <!-- ── Design Tokens ─────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-droplet me-2"></i>Design Tokens — Paleta</h2>
+    <app-card title="CSS Custom Properties" icon="fa-solid fa-code" variant="dark">
+      <div class="token-grid">
+        @for (token of tokens; track token.name) {
+          <div class="token-chip">
+            <span class="token-swatch" [style.background]="'var(' + token.name + ')'"></span>
+            <div class="token-info">
+              <span class="token-label">{{ token.label }}</span>
+              <code class="token-var">{{ token.name }}</code>
+            </div>
+          </div>
+        }
+      </div>
+    </app-card>
+  </section>
+
+  <!-- ── Tipografía ────────────────────────────────────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-font me-2"></i>Tipografía — Roboto</h2>
+    <app-card title="Escala tipográfica" icon="fa-solid fa-text-height" variant="secondary">
+      <div class="typo-scale">
+        <div><span class="typo-size-label">display</span><span style="font-size:2.5rem; font-weight:700">Portal Cliente Profuturo</span></div>
+        <div><span class="typo-size-label">3xl</span><span style="font-size:1.5rem; font-weight:700">Contratos Pasivos</span></div>
+        <div><span class="typo-size-label">xl</span><span style="font-size:1.125rem; font-weight:600">Dashboard Financiero</span></div>
+        <div><span class="typo-size-label">base</span><span style="font-size:0.875rem">Texto de párrafo y etiquetas de formulario</span></div>
+        <div><span class="typo-size-label">sm</span><span style="font-size:0.813rem; color:var(--color-text-muted)">Notas secundarias y metadatos</span></div>
+        <div><span class="typo-size-label">xs</span><span style="font-size:0.75rem; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:.07em">ETIQUETA DE KPI</span></div>
+      </div>
+    </app-card>
+  </section>
+
+  <!-- ── Formulario reactivo con componentes CVA ───────────── -->
+  <section class="demo-section">
+    <h2 class="section-title"><i class="fa-solid fa-wpforms me-2"></i>Formulario — Componentes CVA</h2>
+
+    <app-section-card title="Nuevo Contrato" icon="fa-solid fa-file-contract" variant="primary">
+
+      <form [formGroup]="demoForm">
+        <div class="row g-3">
+
+          <div class="col-12 col-md-6">
+            <app-form-field
+              formControlName="cliente"
+              label="Cliente"
+              placeholder="Ej: Empresa Alpha S.A. de C.V."
+              [required]="true">
+            </app-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <app-select
+              formControlName="tipoContrato"
+              label="Tipo de contrato"
+              [options]="tiposContrato"
+              [required]="true">
+            </app-select>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <app-form-field
+              formControlName="monto"
+              label="Monto (MXN)"
+              type="number"
+              placeholder="0.00">
+            </app-form-field>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <app-select
+              formControlName="estado"
+              label="Estado inicial"
+              [options]="estadosOptions">
+            </app-select>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label fw-semibold" style="font-size:.875rem; color:var(--color-text-primary); margin-bottom:.35rem">
+              Fecha de vencimiento
+            </label>
+            <app-input-datepicker
+              formControlName="fechaVencimiento"
+              placeholder="dd/mm/aaaa"
+              [showFooter]="true">
+            </app-input-datepicker>
+          </div>
+
+          <div class="col-12">
+            <app-form-check
+              formControlName="notificaciones"
+              label="Activar notificaciones"
+              trueLabel="Activadas"
+              falseLabel="Desactivadas"
+              mode="switch"
+              color="primary">
+            </app-form-check>
+          </div>
+
+        </div>
+      </form>
+
+      <div slot="footer" class="d-flex gap-2 justify-content-end">
+        <app-button
+          label="Cancelar"
+          variant="secondary"
+          icon="fa-solid fa-xmark"
+          type="button">
+        </app-button>
+        <app-button
+          label="Guardar contrato"
+          icon="fa-solid fa-floppy-disk"
+          variant="primary"
+          [loading]="formSaving()"
+          (clicked)="onDemoSubmit()">
+        </app-button>
+      </div>
+
+    </app-section-card>
+
+  </section>
+
+</div>

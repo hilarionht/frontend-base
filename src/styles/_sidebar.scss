@@ -1,0 +1,283 @@
+// ============================================================
+
+// _sidebar.scss — Navegación del panel lateral
+
+//
+
+// NUEVO: Reemplaza los estilos del sidebar de AdminLTE.
+
+// Estiliza la estructura HTML de sidebar.component.html:
+
+//   aside.left-sidebar
+
+//     div.scroll-sidebar
+
+//       nav.sidebar-nav
+
+//         ul#sidebarnav
+
+//           li > a.waves-effect (.has-arrow para grupos)
+
+//             i[class]          ← ícono FontAwesome
+
+//             span.hide-menu    ← etiqueta de texto
+
+//           ul.collapse         ← sub-menú colapsable
+
+// ============================================================
+
+
+
+$sidebar-text:      rgba(255, 255, 255, 0.8);
+
+$sidebar-active:    #ffffff;
+
+$sidebar-hover-bg:  var(--sidebar-hover-bg);
+
+$sidebar-active-bg: var(--sidebar-hover-bg);
+
+
+
+// ── Scroll interno del sidebar ────────────────────────────
+
+// Permite que el nav sea scrollable sin scroll en toda la página.
+
+// La altura ya está definida en admin-layout.component.scss.
+
+.scroll-sidebar {
+
+  height: 100%;
+
+}
+
+
+
+// ── Contenedor de nav ────────────────────────────────────
+
+.sidebar-nav {
+
+  padding: var(--space-3) 0;
+
+}
+
+
+
+#sidebarnav {
+
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+
+// ── Items de primer nivel ─────────────────────────────────
+
+#sidebarnav > li > a {
+
+  color: $sidebar-text;
+
+  padding: 10px var(--space-5);
+
+  font-size: var(--font-size-base);
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  border-left: 3px solid transparent;
+
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+
+
+  &:hover {
+
+    color: $sidebar-active;
+
+    background: $sidebar-hover-bg;
+
+    border-left-color: var(--color-primary-accent);
+
+  }
+
+
+
+  &.active {
+
+    color: $sidebar-active;
+
+    background: $sidebar-active-bg;
+
+    border-left-color: var(--color-primary-accent);
+
+    font-weight: var(--font-weight-medium);
+
+  }
+
+}
+
+
+
+// ── Etiqueta de texto (se oculta en mini-sidebar) ─────────
+
+.hide-menu {
+
+  transition: opacity 0.2s ease;
+
+  overflow: hidden;
+
+}
+
+
+
+body.mini-sidebar .hide-menu {
+
+  display: none;
+
+}
+
+
+
+// body.mini-sidebar .left-sidebar:hover .hide-menu {
+
+//   display: inline-block;
+
+// }
+
+
+
+// ── Flecha indicadora de grupo colapsable ─────────────────
+
+.has-arrow::after {
+
+  content: '';
+
+  flex-shrink: 0;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-right: 1.5px solid rgba(255, 255, 255, 0.5);
+
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.5);
+
+  transform: rotate(45deg);
+
+  margin-left: auto;
+
+  margin-right: var(--space-2);
+
+  transition: transform 0.25s ease, opacity 0.2s ease;
+
+}
+
+
+
+.has-arrow[aria-expanded="true"]::after {
+
+  transform: rotate(-135deg);
+
+  margin-top: 2px;
+
+}
+
+
+
+// Ocultar flecha en mini, mostrarla al hacer hover
+
+body.mini-sidebar .has-arrow::after {
+
+  opacity: 0;
+
+}
+
+
+
+// body.mini-sidebar .left-sidebar:hover .has-arrow::after {
+
+//   opacity: 1;
+
+// }
+
+
+
+// ── Sub-menús (nivel 2) ───────────────────────────────────
+
+#sidebarnav ul {
+
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0;
+
+  background: #162438;
+
+
+
+  li a {
+
+    color: rgba(255, 255, 255, 0.65);
+
+    padding: var(--space-2) var(--space-5) var(--space-2) 50px;
+
+    font-size: var(--font-size-sm);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    transition: color 0.2s ease, background 0.2s ease;
+
+
+
+    &:hover {
+
+      color: rgba(255, 255, 255, 0.9);
+
+      background: rgba(255, 255, 255, 0.07);
+
+    }
+
+
+
+    &.active {
+
+      color: $sidebar-active;
+
+      background: rgba(255, 255, 255, 0.12);
+
+    }
+
+  }
+
+}
+
+
+
+// En mini-sidebar los sub-menús se ocultan; se muestran al hover
+
+body.mini-sidebar #sidebarnav ul {
+
+  display: none;
+
+}
+
+
+
+// body.mini-sidebar .left-sidebar:hover #sidebarnav ul {
+
+//   display: block;
+
+// }

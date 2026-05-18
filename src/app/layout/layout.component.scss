@@ -1,0 +1,41 @@
+.layout-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  background: var(--color-gray-800);
+  color: var(--color-white);
+  padding: var(--space-4);
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    color: var(--color-white);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-blue-bootstrap);
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-8);
+}
+
+.main-footer {
+  background: var(--color-gray-800);
+  color: var(--color-white);
+  padding: var(--space-4);
+  text-align: center;
+}

@@ -1,0 +1,193 @@
+// ============================================================
+// _tokens.scss — Design Tokens corporativos (CSS Custom Properties)
+// Movido desde styles.scss para modularización.
+// Disponibles en toda la app mediante var(--nombre).
+// ============================================================
+:root {
+  // ── Colores principales ───────────────────────────────────
+  --color-primary:           #004b8d;
+  --color-primary-medium:    #3182ce;
+  --color-primary-dark:      #2c5aa0;
+  --color-primary-darker:    #2a4e7c;
+  --color-primary-hover:     #015baa;
+  --color-primary-disabled:  #186bb4;
+  --color-primary-accent:    #4299e1;
+  --color-primary-light:     #b8d4fe;
+
+  // Bootstrap/legacy
+  --bs-primary:              #004b8d;
+  --bs-primary-rgb:          0, 75, 141;
+  --bs-success-rgb:          72, 187, 120;
+  --bs-danger-rgb:           245, 101, 101;
+  --color-blue-bs5:          #0d6efd;
+  --color-blue-bs5-dark:     #0a58ca;
+  --color-blue-bootstrap:    #007bff;
+  --color-blue-material:     #1976d2;
+
+  // ── Success ───────────────────────────────────────────────
+  --color-success:           #48bb78;
+  --color-success-dark:      #38a169;
+  --color-success-darker:    #2f855a;
+  --color-success-bs:        #28a745;
+  --color-success-bright:    #22c55e;
+
+  // ── Danger ────────────────────────────────────────────────
+  --color-danger:            #f56565;
+  --color-danger-dark:       #e53e3e;
+  --color-danger-darker:     #c53030;
+  --color-danger-bs:         #dc3545;
+  --color-danger-bs-dark:    #c82333;
+  --color-danger-bs-darker:  #bd2130;
+
+  // ── Warning ───────────────────────────────────────────────
+  --color-warning:           #ed8936;
+  --color-warning-bs:        #ffc107;
+  --color-warning-dark:      #dd6b20;
+
+  // ── Purple ────────────────────────────────────────────────
+  --color-purple:            #667eea;
+  --color-purple-dark:       #5a67d8;
+
+  // ── Info ──────────────────────────────────────────────────
+  --color-info:              #17a2b8;
+
+  // ── Tabs ──────────────────────────────────────────────────
+  --color-tab-accent:        #fb9678;
+
+  // ── Botones contextuales ──────────────────────────────────
+  --color-btn-email:         #3b82f6;
+  --color-btn-email-dark:    #2563eb;
+  --color-btn-pdf:           #10b981;
+  --color-btn-pdf-dark:      #059669;
+  --color-btn-primary-alt:   #0376db;
+  --color-btn-primary-alt-dark: #0159a5;
+
+  // ── Paleta Slate ──────────────────────────────────────────
+  --color-slate-900:         #1e293b;
+  --color-slate-500:         #64748b;
+  --color-slate-300:         #cbd5e1;
+  --color-slate-100:         #f1f5f9;
+  --color-slate-50:          #f8fafc;
+
+  // ── Neutros / Grises ──────────────────────────────────────
+  --color-white:             #ffffff;
+  --color-gray-100:          #f8f9fa;
+  --color-gray-150:          #f0f0f0;
+  --color-gray-200:          #e9ecef;
+  --color-gray-250:          #e2e8f0;
+  --color-gray-300:          #dee2e6;
+  --color-gray-350:          #e0e6ed;
+  --color-gray-400:          #cbd5e0;
+  --color-gray-450:          #d1d9e0;
+  --color-gray-500:          #adb5bd;
+  --color-gray-550:          #a0aec0;
+  --color-gray-600:          #6c757d;
+  --color-gray-650:          #718096;
+  --color-gray-700:          #495057;
+  --color-gray-750:          #4a5568;
+  --color-gray-800:          #343a40;
+  --color-gray-850:          #2d3748;
+  --color-gray-900:          #212529;
+  --color-gray-disabled:     #cfcfcf;
+
+  // ── Texto ─────────────────────────────────────────────────
+  --color-text-primary:      #212529;
+  --color-text-secondary:    #6c757d;
+  --color-text-muted:        #a0aec0;
+  --color-text-heading:      #495057;
+  --color-text-title:        #2c3e50;
+  --color-text-input-label:  #5a6c7d;
+
+  // ── Fondo ─────────────────────────────────────────────────
+  --color-bg-body:           #f8f9fa;
+  --color-bg-subtle:         #f8f9fa;
+  --color-bg-surface:        #fbfcfd;
+  --color-bg-table-alt:      #f7fafc;
+  --color-bg-table-hover:    #f8fafb;
+  --color-bg-table-head:     #edf2f7;
+  --color-bg-verified:       #f0fdf4;
+  --color-bg-pld-warning:    #fff3cd;
+  --color-bg-pld-success:    #e6f4ea;
+  --color-bg-date-hover:     #e3f2fd;
+
+  // ── Bordes ────────────────────────────────────────────────
+  --color-border:            #dee2e6;
+  --color-border-default:    #dee2e6;
+  --color-border-light:      #e0e6ed;
+  --color-border-subtle:     #e8ecf1;
+  --color-border-tab:        #ddd;
+  --color-date-border:       #ced4da;
+  --color-date-focus:        #80bdff;
+
+  // ── Tipografía ────────────────────────────────────────────
+  --font-family-base:        'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-xs:            0.75rem;
+  --font-size-sm:            0.813rem;
+  --font-size-base:          0.875rem;
+  --font-size-md:            0.938rem;
+  --font-size-lg:            1rem;
+  --font-size-xl:            1.125rem;
+  --font-size-2xl:           1.25rem;
+  --font-size-3xl:           1.5rem;
+  --font-size-4xl:           1.75rem;
+  --font-size-display:       2.5rem;
+
+  --font-weight-normal:      400;
+  --font-weight-medium:      500;
+  --font-weight-semibold:    600;
+  --font-weight-bold:        700;
+
+  // ── Espaciado (escala 4px) ────────────────────────────────
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+
+  // ── Radios ────────────────────────────────────────────────
+  --border-radius-sm:   4px;
+  --border-radius:      6px;
+  --border-radius-md:   8px;
+  --border-radius-lg:   10px;
+  --border-radius-xl:   12px;
+  --border-radius-full: 50%;
+
+  // ── Sombras ───────────────────────────────────────────────
+  --shadow-xs:   0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm:   0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md:   0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg:   0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-xl:   0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  --shadow-focus-primary: 0 0 0 3px rgba(66, 153, 225, 0.28);
+  --shadow-focus-blue:    0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  --shadow-focus-danger:  0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+
+  // ── Gradientes ────────────────────────────────────────────
+  --gradient-primary: linear-gradient(135deg, #3182ce, #2c5aa0);
+  --gradient-success: linear-gradient(135deg, #48bb78, #38a169);
+  --gradient-danger:  linear-gradient(135deg, #f56565, #e53e3e);
+  --gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  --gradient-header:  linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+  // ── Layout ────────────────────────────────────────────────
+  --header-height:        60px;
+  --sidebar-width:        230px;
+  --mini-sidebar-width:   70px;
+  --sidebar-bg:           #2b2b2b;
+  --sidebar-hover-bg:     #232323;
+  --sidebar-submenu-bg:   #1f2023;
+
+  // ── Z-index ───────────────────────────────────────────────
+  --z-table-header:   10;
+  --z-modal-backdrop: 1050;
+  --z-modal:          1055;
+
+  // ── Transiciones ──────────────────────────────────────────
+  --transition-fast:   all 0.15s linear;
+  --transition-base:   all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+}

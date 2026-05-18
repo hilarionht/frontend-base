@@ -1,0 +1,15 @@
+<button
+  [class]="btnClass()"
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+  (click)="onClick()"
+>
+  @if (loading()) {
+    <span class="gb-spinner" aria-hidden="true"></span>
+  } @else if (icon()) {
+    <i [class]="icon()" aria-hidden="true"></i>
+  }
+  @if (label()) {
+    <span class="gb-label">{{ label() }}</span>
+  }
+</button>

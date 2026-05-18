@@ -1,12 +1,40 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { API_BASE_URL, MENU_API_URL } from './api.config';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { provideApi } from '@api/provide-api';
+import { provideHighcharts } from 'highcharts-angular';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHighcharts(),
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes), provideClientHydration(withEventReplay())
-  ]
+    provideZonelessChangeDetection(),
+    provideAnimationsAsync(),
+    provideToastr({
+      timeOut:          3500,
+      positionClass:    'toast-top-right',
+      preventDuplicates: true,
+      progressBar:      true,
+      closeButton:      true,
+    }),
+    provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(withFetch(), withInterceptors([AuthInterceptor])),
+    provideApi({
+      basePath: environment.apiUrl,
+      withCredentials: true,
+    }),
+    { provide: API_BASE_URL, useValue: environment.apiUrl },
+    { provide: MENU_API_URL,     useValue: environment.menuApiUrl },
+  ],
 };

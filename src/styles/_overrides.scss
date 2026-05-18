@@ -1,0 +1,143 @@
+// ============================================================
+// _overrides.scss — Overrides de Bootstrap 5.3
+// Personaliza componentes Bootstrap con la paleta corporativa.
+// Movido desde styles.scss.
+// ============================================================
+
+// ── Cards ─────────────────────────────────────────────────
+.card {
+  border: none;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 2px solid var(--color-border-subtle);
+}
+
+.card-header.bg-primary,
+.card-header.bg-info,
+.card-header.bg-success,
+.card-header.bg-warning,
+.card-header.bg-danger {
+  color: var(--color-white) !important;
+}
+
+// ── Colores de fondo ──────────────────────────────────────
+.bg-primary { background-color: var(--color-primary)      !important; }
+.bg-info    { background-color: var(--color-info)         !important; }
+.bg-success { background-color: var(--color-success-bs)   !important; }
+.bg-warning { background-color: var(--color-warning-bs)   !important; }
+.bg-danger  { background-color: var(--color-danger-bs)    !important; }
+
+// ── Colores de texto ──────────────────────────────────────
+.text-themecolor { color: var(--color-text-heading); }
+.text-primary { color: var(--color-primary)              !important; }
+.text-info    { color: var(--color-info)                 !important; }
+.text-success { color: var(--color-success-bs)           !important; }
+.text-warning { color: var(--color-warning-dark)         !important; }
+.text-danger  { color: var(--color-danger-bs)            !important; }
+
+.badge.bg-white.text-info    { color: var(--color-info)     !important; }
+.badge.bg-white.text-warning { color: var(--color-warning)  !important; }
+.badge.bg-white.text-primary { color: var(--color-primary)  !important; }
+
+// ── Colores de borde ──────────────────────────────────────
+.border-primary { border-color: var(--color-primary)     !important; }
+.border-info    { border-color: var(--color-info)         !important; }
+.border-warning { border-color: var(--color-warning)      !important; }
+.border-success { border-color: var(--color-success-bs)   !important; }
+.border-danger  { border-color: var(--color-danger-bs)    !important; }
+
+.border-info,
+.border-warning {
+  border-style: solid !important;
+  border-width: 1px  !important;
+}
+
+// ── Botones — base ────────────────────────────────────────
+.btn {
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  transition: var(--transition-normal);
+}
+
+.btn:not(:disabled):hover {
+  transform:  translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn:active {
+  transform:  translateY(0);
+  box-shadow: none;
+}
+
+// Bootstrap 5.3 usa --bs-btn-* por variante — NO hereda de --bs-primary global.
+// Cada variante necesita sus propias CSS custom properties.
+
+.btn-primary {
+  --bs-btn-color:               var(--color-white);
+  --bs-btn-bg:                  var(--color-primary);
+  --bs-btn-border-color:        var(--color-primary);
+  --bs-btn-hover-color:         var(--color-white);
+  --bs-btn-hover-bg:            var(--color-primary-hover);
+  --bs-btn-hover-border-color:  var(--color-primary-hover);
+  --bs-btn-active-color:        var(--color-white);
+  --bs-btn-active-bg:           var(--color-primary-dark);
+  --bs-btn-active-border-color: var(--color-primary-dark);
+  --bs-btn-disabled-bg:         var(--color-primary-disabled);
+  --bs-btn-disabled-border-color: var(--color-primary-disabled);
+}
+
+.btn-success {
+  --bs-btn-color:               var(--color-white);
+  --bs-btn-bg:                  var(--color-success-bs);
+  --bs-btn-border-color:        var(--color-success-bs);
+  --bs-btn-hover-bg:            var(--color-success-dark);
+  --bs-btn-hover-border-color:  var(--color-success-dark);
+  --bs-btn-active-bg:           var(--color-success-darker);
+  --bs-btn-active-border-color: var(--color-success-darker);
+}
+
+.btn-danger {
+  --bs-btn-color:               var(--color-white);
+  --bs-btn-bg:                  var(--color-danger-bs);
+  --bs-btn-border-color:        var(--color-danger-bs);
+  --bs-btn-hover-bg:            var(--color-danger-bs-dark);
+  --bs-btn-hover-border-color:  var(--color-danger-bs-dark);
+  --bs-btn-active-bg:           var(--color-danger-bs-darker);
+  --bs-btn-active-border-color: var(--color-danger-bs-darker);
+}
+
+.btn-warning {
+  --bs-btn-color:               var(--color-white);
+  --bs-btn-bg:                  var(--color-warning);
+  --bs-btn-border-color:        var(--color-warning);
+  --bs-btn-hover-bg:            var(--color-warning-dark);
+  --bs-btn-hover-border-color:  var(--color-warning-dark);
+  --bs-btn-active-bg:           var(--color-warning-dark);
+}
+
+.btn-info {
+  --bs-btn-color:               var(--color-white);
+  --bs-btn-bg:                  var(--color-info);
+  --bs-btn-border-color:        var(--color-info);
+  --bs-btn-hover-bg:            #138496;
+  --bs-btn-hover-border-color:  #138496;
+}
+
+.btn-outline-primary {
+  --bs-btn-color:               var(--color-primary);
+  --bs-btn-border-color:        var(--color-primary);
+  --bs-btn-hover-color:         var(--color-white);
+  --bs-btn-hover-bg:            var(--color-primary);
+  --bs-btn-hover-border-color:  var(--color-primary);
+  --bs-btn-active-color:        var(--color-white);
+  --bs-btn-active-bg:           var(--color-primary-dark);
+}

@@ -1,0 +1,89 @@
+// ── Variables ──────────────────────────────────────────────────
+$brand-color     : var(--color-primary-accent);
+$brand-glow      : var(--shadow-focus-primary);
+$brand-hover-bg  : rgba(66, 153, 225, 0.06);
+$transition-fast : 0.2s ease;
+
+// ── Inputs — hover y focus ─────────────────────────────────────
+.form-control {
+  transition:
+    border-color   $transition-fast,
+    box-shadow     $transition-fast,
+    background     $transition-fast;
+
+  &:hover:not(:disabled) {
+    border-color    : $brand-color;
+    background-color: $brand-hover-bg;
+  }
+
+  &:focus {
+    border-color    : $brand-color;
+    background-color: $brand-hover-bg;
+    box-shadow      : 0 0 0 3px $brand-glow;
+    outline         : none;
+  }
+}
+
+// ── Input-group con botón toggle contraseña ───────────────────
+// Cuando el foco está en cualquier hijo del grupo, resaltar todo el grupo
+.input-group:focus-within {
+  .form-control,
+  .btn-outline-secondary {
+    border-color: $brand-color;
+  }
+
+  .form-control {
+    background-color: $brand-hover-bg;
+    box-shadow      : none; // el grupo ya muestra el contorno
+  }
+}
+
+.input-group:has(.form-control:hover:not(:focus):not(:disabled)) {
+  .btn-outline-secondary {
+    border-color    : $brand-color;
+    background-color: $brand-hover-bg;
+  }
+}
+
+// Botón toggle dentro del input-group
+.input-group .btn-outline-secondary {
+  transition:
+    border-color     $transition-fast,
+    background-color $transition-fast,
+    color            $transition-fast;
+  cursor: pointer;
+
+  &:hover {
+    border-color    : $brand-color;
+    background-color: $brand-hover-bg;
+    color           : $brand-color;
+  }
+
+  &:focus-visible {
+    border-color: $brand-color;
+    box-shadow  : 0 0 0 3px $brand-glow;
+    outline     : none;
+  }
+}
+
+// ── Botón principal (Entrar / Enviar instrucciones) ───────────
+.btn-info,
+.btn-primary {
+  transition:
+    transform  $transition-fast,
+    box-shadow $transition-fast,
+    filter     $transition-fast;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    transform : translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    filter    : brightness(1.08);
+  }
+
+  &:active:not(:disabled) {
+    transform : translateY(0);
+    box-shadow: var(--shadow-sm);
+    filter    : brightness(0.97);
+  }
+}
