@@ -9,7 +9,7 @@
   border: none;
   border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-md);
-  transition: var(--transition-normal);
+  transition: var(--transition-slow);
 }
 
 .card:hover {
@@ -65,7 +65,7 @@
 .btn {
   border-radius: var(--border-radius-md);
   font-size: var(--font-size-base);
-  transition: var(--transition-normal);
+  transition: var(--transition-slow);
 }
 
 .btn:not(:disabled):hover {

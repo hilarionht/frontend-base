@@ -1,0 +1,44 @@
+// ============================================================
+// _forms.scss — Global form overrides
+//
+// Overrides Bootstrap 5.3 form components to match the
+// design token system. Applied globally (no encapsulation).
+// ============================================================
+
+// ── Currency alignment ────────────────────────────────────
+input[iscurrency] { text-align: right; }
+
+app-input-currency input[type="string"],
+app-input-currency input[type="string"]:focus {
+  text-align: right;
+  color:      var(--color-success);
+}
+
+// ── Form select — invalid state chevron restore ───────────
+// Bootstrap's invalid-state background-image overwrites the
+// dropdown chevron. This rule restores it with correct sizing.
+// Dark mode note: chevron color %23343a40 = --color-gray-800.
+// Regenerate the SVG data URI for dark mode if needed.
+.form-select.is-invalid:not([multiple]):not([size]),
+.form-select.is-invalid:not([multiple])[size="1"] {
+  padding-right:       2.25rem !important;
+  background-image:    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+  background-position: right 0.75rem center !important;
+  background-size:     16px 12px !important;
+  background-repeat:   no-repeat !important;
+}
+
+// ── Checkboxes ────────────────────────────────────────────
+.form-check-input {
+  transition: var(--transition-base);
+}
+
+.form-check-input:checked {
+  background-color: var(--color-success);
+  border-color:     var(--color-success);
+}
+
+.form-check-input:focus {
+  border-color: var(--color-primary-accent);
+  box-shadow:   var(--shadow-focus-primary);
+}

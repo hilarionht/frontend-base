@@ -1,0 +1,82 @@
+// ============================================================
+// _content.scss — Page content area layout
+//
+// Covers: page-wrapper flex model, page-title band, card
+// title variants, footer, and admin-main reset.
+// Works with _layout.scss (page-wrapper positioning/offset).
+// ============================================================
+
+// ── Content wrapper flex model ────────────────────────────
+// Offsets (margin-left, padding-top) live in _layout.scss.
+.page-wrapper {
+  display:        flex;
+  flex-direction: column;
+  min-height:     100vh;
+}
+
+.page-wrapper > .container-fluid {
+  flex:    1;
+  // padding-top intentionally omitted: managed by .page-titles margin
+  padding: 0 var(--page-container-padding) var(--page-container-padding);
+}
+
+.admin-main {
+  padding:    0;
+  min-height: 0;
+}
+
+// ── Page title band ───────────────────────────────────────
+.page-title {
+  font-size:      var(--font-size-4xl);
+  font-weight:    var(--font-weight-semibold);
+  color:          var(--color-text-title);
+  margin-bottom:  var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom:  2px solid var(--color-border-subtle);
+}
+
+// ── Card title variants ───────────────────────────────────
+.card-title {
+  font-size:      var(--font-size-4xl);
+  font-weight:    var(--font-weight-semibold);
+  color:          var(--color-text-title);
+  margin-bottom:  var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom:  2px solid var(--color-border-subtle);
+}
+
+.card-rounded { border-radius: var(--border-radius-lg); }
+
+.card-title-rounded {
+  border-radius:  var(--border-radius-lg) var(--border-radius-lg) 0 0 !important;
+  padding-bottom: 0;
+}
+
+.card-title-rounded h5 {
+  font-size: var(--font-size-xl) !important;
+  border:    none !important;
+  color:     var(--color-white);
+}
+
+// ── Footer ────────────────────────────────────────────────
+.page-wrapper > app-footer .footer,
+.page-wrapper .footer {
+  margin-left: 0 !important;   // AdminLTE override
+  width:       100%;
+  background:  var(--color-white);
+  border-top:  1px solid var(--color-border);
+  padding:     var(--sidebar-item-padding-y) var(--page-container-padding);
+  color:       var(--color-text-secondary);
+  font-size:   var(--font-size-sm);
+}
+
+.footer-inner {
+  display:     flex;
+  align-items: center;
+  gap:         var(--space-2);
+  flex-wrap:   wrap;
+}
+
+.footer-logo    { height: 20px; flex-shrink: 0; }
+.footer-text    { flex: 1 1 auto; font-size: var(--font-size-sm); color: inherit; }
+.footer-version { font-size: var(--font-size-xs); opacity: 0.55; font-family: monospace; white-space: nowrap; }

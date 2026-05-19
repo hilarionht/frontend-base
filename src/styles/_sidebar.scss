@@ -1,198 +1,210 @@
 // ============================================================
-// _sidebar.scss — Navegación del panel lateral
+// _sidebar.scss — Sidebar navigation visual behavior
 //
 // Estiliza: aside.left-sidebar > .scroll-sidebar > .sidebar-nav
 //           > ul#sidebarnav > li > a / ul.collapse
 //
-// Mini-sidebar: flyout por li (AdminLTE style).
-//   - sidebar permanece en --mini-sidebar-width
-//   - label + submenu se despliegan solo para el li hovered
-//   - submenu: position:absolute, top:100% (debajo del a, sin overlap)
+// Scroll/scrollbar rules live in _sidebar-nav.scss (consolidated).
+//
+// Mini-sidebar: flyout per li (AdminLTE pattern).
+//   - sidebar stays at --mini-sidebar-width
+//   - label + submenu expand only for hovered li
+//   - submenu: position:absolute, top:100% (below <a>, no overlap)
+//
+// RTL support: [dir="rtl"] block at bottom of this file.
+// Touch targets: <a> min-height:44px (WCAG 2.5.5).
 // ============================================================
 
-
-
-// ── Scroll interno ────────────────────────────────────────
-
-.scroll-sidebar {
-  height: 100%;
-}
-
-
-
-// ── Contenedor de nav ─────────────────────────────────────
-
+// ── Nav container ─────────────────────────────────────────
 .sidebar-nav {
   padding: var(--space-3) 0;
 }
 
-
-
 #sidebarnav {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin:     0;
+  padding:    0;
 }
 
-
-
-// ── Items de primer nivel ─────────────────────────────────
-
+// ── Level-1 links ─────────────────────────────────────────
 #sidebarnav > li > a {
-  color: var(--sidebar-text);
-  padding: var(--sidebar-item-padding-y) var(--space-5);
-  font-size: var(--font-size-base);
-  white-space: nowrap;
-  overflow: hidden;
-  border-left: var(--sidebar-active-border-width) solid transparent;
+  color:        var(--sidebar-text);
+  padding:      var(--sidebar-item-padding-y) var(--space-5);
+  font-size:    var(--font-size-base);
+  white-space:  nowrap;
+  overflow:     hidden;
+  text-overflow: ellipsis;           // graceful label truncation
+  min-height:   44px;               // WCAG 2.5.5 touch target
+  display:      flex;               // ensures min-height works with flex children
+  align-items:  center;
+  border-inline-start: var(--sidebar-active-border-width) solid transparent;
   transition: var(--transition-color);
 
   &:hover {
-    color: var(--sidebar-text-active);
-    background: var(--sidebar-hover-bg);
-    border-left-color: var(--color-primary-accent);
+    color:                    var(--sidebar-text-active);
+    background:               var(--sidebar-hover-bg);
+    border-inline-start-color: var(--color-primary-accent);
   }
 
   &.active {
-    color: var(--sidebar-text-active);
-    background: var(--sidebar-hover-bg);
-    border-left-color: var(--color-primary-accent);
-    font-weight: var(--font-weight-medium);
+    color:                    var(--sidebar-text-active);
+    background:               var(--sidebar-hover-bg);
+    border-inline-start-color: var(--color-primary-accent);
+    font-weight:              var(--font-weight-medium);
   }
 }
 
-
-
-// ── Label de texto ────────────────────────────────────────
-
+// ── Label text ────────────────────────────────────────────
 .hide-menu {
+  overflow:   hidden;
   transition: var(--transition-opacity);
-  overflow: hidden;
 }
 
 body.mini-sidebar .hide-menu {
   display: none;
 }
 
-
-
-// ── Flecha de grupo colapsable ────────────────────────────
-
+// ── Collapse arrow ────────────────────────────────────────
 .has-arrow::after {
-  content: '';
-  flex-shrink: 0;
-  width: var(--sidebar-arrow-size);
-  height: var(--sidebar-arrow-size);
-  border-right: var(--sidebar-arrow-border-width) solid var(--sidebar-arrow-color);
+  content:      '';
+  flex-shrink:  0;
+  width:        var(--sidebar-arrow-size);
+  height:       var(--sidebar-arrow-size);
+  border-right:  var(--sidebar-arrow-border-width) solid var(--sidebar-arrow-color);
   border-bottom: var(--sidebar-arrow-border-width) solid var(--sidebar-arrow-color);
-  transform: rotate(45deg);
-  margin-left: auto;
+  transform:    rotate(45deg);
+  margin-left:  auto;
   margin-right: var(--space-2);
-  transition: var(--transition-arrow);
+  transition:   var(--transition-arrow);
 }
 
 .has-arrow[aria-expanded="true"]::after {
-  transform: rotate(-135deg);
-  margin-top: 2px;
+  transform:  rotate(-135deg);
+  margin-top: 2px;   // optical correction for rotated arrow
 }
 
 body.mini-sidebar .has-arrow::after {
   opacity: 0;
 }
 
-
-
-// ── Sub-menús nivel 2 (modo normal / expandido) ───────────
-
+// ── Level-2 submenus (expanded mode) ─────────────────────
 #sidebarnav ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding:    0;
+  margin:     0;
   background: var(--sidebar-submenu-bg);
 
   li a {
-    color: var(--sidebar-subtext);
-    padding: var(--sidebar-item-padding-y) var(--space-5) var(--sidebar-item-padding-y) var(--sidebar-submenu-indent);
-    font-size: var(--font-size-sm);
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    white-space: nowrap;
-    overflow: hidden;
-    transition: var(--transition-color);
+    color:         var(--sidebar-subtext);
+    padding:       var(--sidebar-item-padding-y)
+                   var(--space-5)
+                   var(--sidebar-item-padding-y)
+                   var(--sidebar-submenu-indent);
+    font-size:     var(--font-size-sm);
+    display:       flex;
+    align-items:   center;
+    gap:           var(--space-2);
+    white-space:   nowrap;
+    overflow:      hidden;
+    text-overflow: ellipsis;         // graceful truncation on long labels
+    transition:    var(--transition-color);
 
-    &:hover {
-      color: var(--sidebar-text-active);
-      background: var(--sidebar-item-hover-bg);
-    }
-
-    &.active {
-      color: var(--sidebar-text-active);
-      background: var(--sidebar-item-active-bg);
-    }
+    &:hover  { color: var(--sidebar-text-active); background: var(--sidebar-item-hover-bg); }
+    &.active { color: var(--sidebar-text-active); background: var(--sidebar-item-active-bg); }
   }
 }
 
-
-
-// ── Mini-sidebar: flyout por li (AdminLTE) ────────────────
+// ── Mini-sidebar: flyout per li ───────────────────────────
 //
-// El sidebar permanece en --mini-sidebar-width.
-// Solo el li bajo el cursor expande su link y muestra su submenu.
-// El submenu se posiciona con top:100% (debajo del a, sin overlap)
-// y left:--mini-sidebar-width (alineado con el label).
-
+// Sidebar stays at --mini-sidebar-width.
+// Hovered li expands its link and shows its submenu flyout.
+// Submenu: absolute, top:100% (below <a>), left:--mini-sidebar-width.
+//
+// Flyout viewport collision: top:100% can push flyout off-screen
+// when the li is near the viewport bottom. A JS IntersectionObserver
+// is required for full collision avoidance — not solvable in CSS alone.
 body.mini-sidebar:not(.show-sidebar) {
 
-  // Anchor para el submenu flyout absoluto
+  // Anchor for absolute flyout positioning
   #sidebarnav > li {
     position: relative;
   }
 
-  // Link del li hovered: se expande para mostrar icon + label
+  // Expand hovered link to show icon + label
   #sidebarnav > li:hover > a {
-    width: var(--sidebar-width);
-    overflow: visible;
+    width:      var(--sidebar-width);
+    overflow:   visible;
     background: var(--sidebar-hover-bg);
-    border-left-color: var(--color-primary-accent);
-    color: var(--sidebar-text-active);
-    z-index: var(--z-sidebar-flyout-item);
+    border-inline-start-color: var(--color-primary-accent);
+    color:      var(--sidebar-text-active);
+    z-index:    var(--z-sidebar-flyout-item);
   }
 
-  // Label visible solo para el item hovered
+  // Show label only for hovered item
   #sidebarnav > li:hover > a .hide-menu {
     display: inline;
   }
 
-  // Flecha visible solo para el item hovered
+  // Show arrow only for hovered item
   #sidebarnav > li:hover > a.has-arrow::after {
     opacity: 1;
   }
 
-  // Submenús: ocultos en mini mode
-  // Especificidad (1,3,3) > show rule de admin-layout (1,2,1)
-  // top:100% = debajo del <a>, sin overlap con el label expandido
-  // left:--mini-sidebar-width = alineado con inicio del label
+  // Hidden submenus in mini mode
+  // Specificity (1,3,3) > .show rule in _sidebar-nav.scss (1,2,1)
   #sidebarnav > li > ul.collapse {
-    position: absolute;
-    left: var(--mini-sidebar-width);
-    top: 100%;
+    position:  absolute;
+    left:      var(--mini-sidebar-width);
+    top:       100%;
     min-width: calc(var(--sidebar-width) - var(--mini-sidebar-width));
     background: var(--sidebar-submenu-bg);
     box-shadow: var(--shadow-md);
-    z-index: var(--z-sidebar-flyout);
-    display: none;
+    z-index:   var(--z-sidebar-flyout);
+    display:   none;
   }
 
-  // Submenu del li hovered — flyout visible
-  // Especificidad (1,4,3) > hide rule (1,3,3)
+  // Flyout visible for hovered li
+  // Specificity (1,4,3) > hide rule (1,3,3)
   #sidebarnav > li:hover > ul.collapse {
     display: block;
   }
 
-  // Padding de items dentro del flyout:
-  // sin el indent de 50px del sidebar expandido
+  // Flyout items: remove expanded-mode indent
   #sidebarnav > li > ul.collapse li a {
-    padding-left: var(--space-4);
+    padding-inline-start: var(--space-4);
+  }
+}
+
+// ============================================================
+// RTL SUPPORT
+// Set dir="rtl" on <html> to activate. Sidebar moves to right;
+// flyout appears to the right of the viewport in reverse order.
+// ============================================================
+[dir="rtl"] {
+  // Border indicator: right side instead of left
+  #sidebarnav > li > a {
+    border-inline-start: none;
+    border-inline-end:   var(--sidebar-active-border-width) solid transparent;
+
+    &:hover  { border-inline-end-color: var(--color-primary-accent); }
+    &.active { border-inline-end-color: var(--color-primary-accent); }
+  }
+
+  // Arrow: flip rotation direction
+  .has-arrow::after {
+    margin-left:  var(--space-2);
+    margin-right: auto;
+  }
+
+  // Submenu indent: flip side
+  #sidebarnav ul li a {
+    padding-inline-start: var(--space-5);
+    padding-inline-end:   var(--sidebar-submenu-indent);
+  }
+
+  // Mini-sidebar flyout: open to the left of the (right-side) sidebar
+  body.mini-sidebar:not(.show-sidebar) #sidebarnav > li > ul.collapse {
+    left:  auto;
+    right: var(--mini-sidebar-width);
   }
 }

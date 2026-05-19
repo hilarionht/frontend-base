@@ -1,0 +1,21 @@
+// ============================================================
+// _badges.scss — Badge overrides with gradient fills
+//
+// Applies gradient backgrounds to Bootstrap's .bg-* badge
+// variants. !important required to override Bootstrap's solid
+// background-color declarations.
+// ============================================================
+
+.badge {
+  padding:       var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-pill);
+  font-size:     var(--font-size-xs);
+  font-weight:   var(--font-weight-medium);
+}
+
+.badge.bg-success   { background: var(--gradient-success) !important;                                                             color: var(--color-white) !important; }
+.badge.bg-danger    { background: var(--gradient-danger)  !important;                                                             color: var(--color-white) !important; }
+.badge.bg-warning   { background: linear-gradient(135deg, var(--color-warning), var(--color-warning-dark)) !important;            color: var(--color-white) !important; }
+.badge.bg-info      { background: linear-gradient(135deg, var(--color-primary-accent), var(--color-primary-medium)) !important;   color: var(--color-white) !important; }
+.badge.bg-secondary { background: var(--color-bg-table-head) !important;                                                         color: var(--color-gray-750)  !important; }
+.badge.bg-sky       { background: var(--color-bg-date-hover) !important;                                                         color: var(--color-primary-dark) !important; }

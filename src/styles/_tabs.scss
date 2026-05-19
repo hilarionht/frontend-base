@@ -1,0 +1,80 @@
+// ============================================================
+// _tabs.scss — Vertical tab variants
+//
+// .vtabs        — display:table vertical nav (AdminLTE pattern)
+// .customvtab   — border-right indicator style
+// .customtab2   — accent background on active/hover
+//
+// Note: display:table layout is a legacy AdminLTE pattern.
+// Consider migrating to flex when the component is refactored.
+// ============================================================
+
+.card-min-height { min-height: 440px; }
+
+// ── Vertical tab shell ────────────────────────────────────
+.vtabs { display: table; }
+
+.vtabs .tabs-vertical {
+  width:         150px;
+  border-bottom: 0;
+  border-right:  1px solid var(--color-gray-200);
+  display:       table-cell;
+  vertical-align: top;
+}
+
+.vtabs .tabs-vertical li .nav-link {
+  color:         var(--color-gray-800);
+  margin-bottom: var(--space-3);
+  border:        0;
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+}
+
+.vtabs .tab-content {
+  display:        table-cell;
+  padding:        var(--space-5);
+  vertical-align: top;
+}
+
+// ── Default: accent background on active/hover ────────────
+.tabs-vertical li .nav-link.active,
+.tabs-vertical li .nav-link:hover,
+.tabs-vertical li .nav-link.active:focus {
+  background: var(--color-tab-accent);
+  border:     0;
+  color:      var(--color-white);
+}
+
+// ── Custom: border-right indicator ────────────────────────
+.customvtab .tabs-vertical li .nav-link.active,
+.customvtab .tabs-vertical li .nav-link:hover,
+.customvtab .tabs-vertical li .nav-link:focus {
+  background:   var(--color-white);
+  border:       0;
+  border-right: 2px solid var(--color-tab-accent);
+  margin-right: -1px;
+  color:        var(--color-tab-accent);
+}
+
+// ── Tab border wrappers ────────────────────────────────────
+.tabheader-border {
+  border:        1px solid var(--color-border-tab);
+  border-bottom: 0;
+}
+
+.tabcontent-border {
+  border:     1px solid var(--color-border-tab);
+  border-top: 0;
+}
+
+// ── Custom tab 2 ──────────────────────────────────────────
+.customtab2 li a.nav-link {
+  border:       0;
+  margin-right: var(--space-1);   // 4px (was 3px — adjusted to 4px grid)
+  color:        var(--color-text-primary);
+}
+
+.customtab2 li a.nav-link.active,
+.customtab2 li a.nav-link:hover {
+  background: var(--color-tab-accent);
+  color:      var(--color-white);
+}

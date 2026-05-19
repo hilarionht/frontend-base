@@ -1,0 +1,55 @@
+// ============================================================
+// _accessibility.scss — Motion and interaction accessibility
+//
+// prefers-reduced-motion: WCAG 2.1 SC 2.3.3 (AAA baseline,
+// increasingly expected at AA). Disables all CSS transitions
+// and animations when the user's OS requests reduced motion.
+//
+// Touch targets: sidebar items enforce min-height: 44px per
+// WCAG 2.5.5 (AA). Applied in _sidebar.scss.
+// ============================================================
+
+// ── Reduced motion ────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  // Layout structure transitions
+  .left-sidebar,
+  .page-wrapper,
+  .navbar-header {
+    transition: none !important;
+  }
+
+  // Sidebar element transitions
+  .hide-menu,
+  .has-arrow::after,
+  #sidebarnav > li > a,
+  #sidebarnav ul li a {
+    transition: none !important;
+  }
+
+  // Topbar interaction states
+  .sidebartoggler,
+  .nav-toggler,
+  .profile-pic,
+  .navbar-brand {
+    transition: none !important;
+  }
+
+  // Component-level transitions
+  .btn,
+  .card,
+  .action-btn,
+  .form-check-input {
+    transition: none !important;
+  }
+
+  // Icon color/opacity transitions
+  .sidebar-nav > ul > li > a > i,
+  .sidebar-nav ul ul li a > i {
+    transition: none !important;
+  }
+
+  // Dropdown open animation
+  .dropdown-menu.animated {
+    animation: none !important;
+  }
+}

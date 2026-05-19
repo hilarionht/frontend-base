@@ -1,0 +1,68 @@
+// ============================================================
+// _modal.scss — Global modal styles
+//
+// Covers the logout modal and Bootstrap backdrop override.
+// AdminLTE note: z-index !important required — AdminLTE's
+// compiled CSS asserts its own modal stacking context.
+// ============================================================
+
+// ── Logout modal ──────────────────────────────────────────
+#logoutModal {
+  z-index: var(--z-modal) !important;   // AdminLTE override required
+}
+
+#logoutModal.show  { display: block !important; }
+#logoutModal.fade  { transition: var(--transition-fast); }
+#logoutModal.fade.show { opacity: 1; }
+
+// Bootstrap standard 28px (1.75rem) top margin — not in spacing scale
+#logoutModal .modal-dialog { margin: 1.75rem auto; }
+
+#logoutModal .modal-content {
+  border:        none;
+  border-radius: var(--border-radius-lg);
+  box-shadow:    var(--shadow-xl);
+}
+
+#logoutModal .modal-header {
+  background:    var(--gradient-header);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+#logoutModal .modal-body   { padding: var(--space-6); }
+
+#logoutModal .modal-footer {
+  border-top:    1px solid var(--color-border);
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  padding:       var(--space-4) var(--space-6);
+}
+
+#logoutModal .modal-title {
+  font-weight: var(--font-weight-semibold);
+  color:       var(--color-text-heading);
+}
+
+#logoutModal .btn-danger {
+  background:  linear-gradient(135deg, var(--color-danger-bs) 0%, var(--color-danger-bs-dark) 100%);
+  border:      none;
+  font-weight: var(--font-weight-medium);
+  transition:  var(--transition-slow);
+}
+
+#logoutModal .btn-danger:hover {
+  background: linear-gradient(135deg, var(--color-danger-bs-dark) 0%, var(--color-danger-bs-darker) 100%);
+  transform:  translateY(-1px);
+  box-shadow: var(--shadow-danger-hover);
+}
+
+#logoutModal .btn:focus       { box-shadow: var(--shadow-focus-blue);   outline: none; }
+#logoutModal .btn-danger:focus { box-shadow: var(--shadow-focus-danger); }
+
+// ── Bootstrap backdrop ────────────────────────────────────
+.modal-backdrop {
+  z-index:          var(--z-modal-backdrop);
+  background-color: var(--modal-backdrop-bg);
+}
+
+.modal-backdrop.show { opacity: 0.5; }

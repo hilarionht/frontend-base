@@ -1,0 +1,89 @@
+// ============================================================
+// _sidebar-nav.scss — Sidebar navigation: AdminLTE overrides
+//
+// Overrides AdminLTE's compiled CSS to implement a flex-based
+// icon+label layout for #sidebarnav.
+//
+// AdminLTE coupling:
+//   - #sidebarnav, .sidebar-nav, .scroll-sidebar — template class names
+//   - ul.collapse / .collapse.show / .collapse.in — Bootstrap collapse
+//   - !important rules are required to override AdminLTE specificity
+//
+// Structure (source: admin-layout.component.scss — extracted here
+// so global partials own all global styles).
+// ============================================================
+
+// ── Complete scroll container ─────────────────────────────
+// Consolidates: height (was in _sidebar.scss) + overflow + scrollbar
+.scroll-sidebar {
+  height:           100%;
+  overflow-y:       auto;
+  overflow-x:       hidden;
+  scrollbar-width:  thin;
+  scrollbar-color:  var(--sidebar-scrollbar) transparent;
+
+  &::-webkit-scrollbar       { width: var(--sidebar-scrollbar-width); }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb {
+    background:    var(--sidebar-scrollbar);
+    border-radius: var(--border-radius-sm);
+  }
+}
+
+// ── Bootstrap collapse behavior for sidebar submenus ──────
+// AdminLTE relies on Bootstrap's .collapse toggle pattern.
+#sidebarnav ul.collapse { display: none; }
+
+#sidebarnav ul.collapse.in,
+#sidebarnav ul.collapse.show { display: block; }
+
+// ── Level-1 links: flex layout (icon + label) ─────────────
+// !important: AdminLTE sets display:block on sidebar links.
+.sidebar-nav > ul > li > a {
+  display:     flex !important;
+  align-items: center !important;
+  gap:         var(--sidebar-icon-gap) !important;
+}
+
+// ── Level-1 icons: fixed-size, centered ───────────────────
+// !important: AdminLTE applies conflicting font-size + margins inline.
+.sidebar-nav > ul > li > a > i {
+  font-size:   var(--font-size-lg) !important;
+  width:       var(--icon-size-md) !important;
+  min-width:   var(--icon-size-md) !important;
+  text-align:  center !important;
+  flex-shrink: 0 !important;
+  margin:      0 !important;
+  padding:     0 !important;
+  transition:  var(--transition-icon);
+}
+
+// Neutralize AdminLTE margin on .hide-menu (label text wrapper)
+#sidebarnav > ul > li > a > .hide-menu {
+  margin-left:  0 !important;
+  padding-left: 0 !important;
+}
+
+// ── Level-2 links: flex layout ────────────────────────────
+.sidebar-nav ul ul li a {
+  display:     flex !important;
+  align-items: center !important;
+  gap:         var(--space-2) !important;
+}
+
+// ── Level-2 icons ─────────────────────────────────────────
+.sidebar-nav ul ul li a > i {
+  font-size:   var(--font-size-base) !important;
+  width:       var(--icon-size-sm) !important;
+  min-width:   var(--icon-size-sm) !important;
+  text-align:  center !important;
+  flex-shrink: 0 !important;
+  margin:      0 !important;
+  opacity:     0.85;
+  transition:  var(--transition-icon);
+}
+
+.sidebar-nav ul ul li a:hover > i,
+.sidebar-nav ul ul li a.active > i {
+  opacity: 1;
+}

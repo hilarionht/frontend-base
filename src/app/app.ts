@@ -9,9 +9,8 @@ import { UtilsService } from './services/utils.service';
   styleUrl: './app.css'
 })
 export class App implements OnInit {
-  protected readonly title = signal('Anfexi Pasivos');
+  protected readonly title = signal('Anfexi App');
   private readonly utils = inject(UtilsService);
-  
   ngOnInit(): void {
     this.utils.hidePreloader();
   }

@@ -80,3 +80,9 @@
 
 .success-btn { background: var(--color-success); }
 .success-btn:hover:not(:disabled) { background: var(--color-success-dark); }
+
+// ── Table column width utilities ──────────────────────────
+.w-id        { width: 80px  !important; }
+.w-acciones  { width: 120px !important; }
+.w-auto-width { width: auto !important; }
+.b-b-none    { border-bottom: none !important; }

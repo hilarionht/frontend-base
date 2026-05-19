@@ -2,40 +2,75 @@
 // styles.scss — Entry point de estilos globales
 //
 // Único archivo listado en angular.json > styles[].
-// Organizado en partials por responsabilidad dentro de
-// src/styles/. El orden de @use determina la cascada CSS.
+// El orden de @use determina la cascada CSS.
 //
-// Partials existentes (tokens, reset, overrides, utilities):
-//   movidos desde este archivo para modularización.
-//
-// Partials nuevos (layout, sidebar, topbar, waves, login):
-//   reemplazan el bundle precompilado style.min.css y los
-//   archivos CSS dinámicos de la versión legacy.
+// Arquitectura de partials:
+//   _tokens.scss       — design tokens (CSS custom properties)
+//   _themes.scss       — dark/light theme overrides
+//   _reset.scss        — base reset + element defaults
+//   _overrides.scss    — Bootstrap 5.3 component overrides
+//   _utilities.scss    — clases utilitarias y botones de acción
+//   _layout.scss       — estructura fixed-header + fixed-sidebar
+//   _sidebar.scss      — sidebar visual behavior
+//   _sidebar-nav.scss  — sidebar nav AdminLTE overrides
+//   _topbar.scss       — barra superior / navbar
+//   _waves.scss        — efecto ripple CSS
+//   _login.scss        — página de autenticación
+//   _modal.scss        — modales globales (logout, backdrop)
+//   _forms.scss        — form overrides (checkbox, select, currency)
+//   _content.scss      — page-wrapper, card-title, footer
+//   _badges.scss       — badge gradient overrides
+//   _tabs.scss         — vertical tab variants
+//   _accessibility.scss — prefers-reduced-motion, touch targets
 // ============================================================
 
-// ── 1. Design tokens (CSS Custom Properties en :root) ────
+// ── 1. Design tokens ──────────────────────────────────────
 @use './styles/tokens';
 
-// ── 2. Reset base y estilos de elementos nativos ─────────
+// ── 2. Theme overrides (dark mode infrastructure) ─────────
+@use './styles/themes';
+
+// ── 3. Reset base y estilos de elementos nativos ─────────
 @use './styles/reset';
 
-// ── 3. Overrides de componentes Bootstrap 5.3 ────────────
+// ── 4. Bootstrap 5.3 overrides ───────────────────────────
 @use './styles/overrides';
 
-// ── 4. Clases utilitarias y botones de acción ─────────────
+// ── 5. Clases utilitarias y botones de acción ─────────────
 @use './styles/utilities';
 
-// ── 5. Estructura del layout (topbar + sidebar + content) ─
+// ── 6. Estructura del layout ──────────────────────────────
 @use './styles/layout';
 
-// ── 6. Navegación del sidebar ─────────────────────────────
+// ── 7. Navegación del sidebar — visual ────────────────────
 @use './styles/sidebar';
 
-// ── 7. Barra superior (topbar/navbar) ─────────────────────
+// ── 8. Sidebar nav — AdminLTE overrides ───────────────────
+@use './styles/sidebar-nav';
+
+// ── 9. Barra superior ─────────────────────────────────────
 @use './styles/topbar';
 
-// ── 8. Efecto ripple CSS (reemplaza waves.js) ─────────────
+// ── 10. Efecto ripple CSS ─────────────────────────────────
 @use './styles/waves';
 
-// ── 9. Página de autenticación / login ───────────────────
+// ── 11. Página de autenticación ───────────────────────────
 @use './styles/login';
+
+// ── 12. Modales ───────────────────────────────────────────
+@use './styles/modal';
+
+// ── 13. Form overrides ────────────────────────────────────
+@use './styles/forms';
+
+// ── 14. Content area ──────────────────────────────────────
+@use './styles/content';
+
+// ── 15. Badges ────────────────────────────────────────────
+@use './styles/badges';
+
+// ── 16. Vertical tabs ────────────────────────────────────
+@use './styles/tabs';
+
+// ── 17. Accessibility ─────────────────────────────────────
+@use './styles/accessibility';

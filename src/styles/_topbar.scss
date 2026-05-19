@@ -53,7 +53,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  transition: width 0.3s ease, min-width 0.3s ease;
+  transition: width var(--transition-layout), min-width var(--transition-layout);
 }
 
 // Reduce el header del logo cuando el sidebar está colapsado
@@ -174,7 +174,7 @@ body.mini-sidebar .navbar-header {
 
     &:hover,
     &:focus {
-      background: var(--color-bg-subtle);
+      background: var(--color-bg-body);
       color: var(--color-primary);
     }
 
