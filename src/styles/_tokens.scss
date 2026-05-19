@@ -38,6 +38,7 @@
   --color-danger-bs:         #dc3545;
   --color-danger-bs-dark:    #c82333;
   --color-danger-bs-darker:  #bd2130;
+  --color-danger-bs-rgb:     220, 53, 69;
 
   // ── Warning ───────────────────────────────────────────────
   --color-warning:           #ed8936;
@@ -137,14 +138,15 @@
   --font-weight-semibold:    600;
   --font-weight-bold:        700;
 
-  // ── Espaciado (escala 4px) ────────────────────────────────
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  20px;
-  --space-6:  24px;
-  --space-8:  32px;
+  // ── Espaciado (escala 4px + half-step 10px) ──────────────
+  --space-1:    4px;
+  --space-2:    8px;
+  --space-2-5:  10px;
+  --space-3:    12px;
+  --space-4:    16px;
+  --space-5:    20px;
+  --space-6:    24px;
+  --space-8:    32px;
 
   // ── Radios ────────────────────────────────────────────────
   --border-radius-sm:   4px;
@@ -152,6 +154,7 @@
   --border-radius-md:   8px;
   --border-radius-lg:   10px;
   --border-radius-xl:   12px;
+  --border-radius-pill: 20px;
   --border-radius-full: 50%;
 
   // ── Sombras ───────────────────────────────────────────────
@@ -166,28 +169,70 @@
   --shadow-focus-blue:    0 0 0 0.25rem rgba(13, 110, 253, 0.25);
   --shadow-focus-danger:  0 0 0 0.25rem rgba(220, 53, 69, 0.25);
 
-  // ── Gradientes ────────────────────────────────────────────
-  --gradient-primary: linear-gradient(135deg, #3182ce, #2c5aa0);
-  --gradient-success: linear-gradient(135deg, #48bb78, #38a169);
-  --gradient-danger:  linear-gradient(135deg, #f56565, #e53e3e);
-  --gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  --gradient-header:  linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  // Sombras semánticas de layout
+  --shadow-topbar:         0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-sidebar-mobile: 4px 0 20px rgba(0, 0, 0, 0.35);
+  --shadow-danger-hover:   0 4px 8px rgba(var(--color-danger-bs-rgb), 0.3);
 
-  // ── Layout ────────────────────────────────────────────────
-  --header-height:        60px;
-  --sidebar-width:        230px;
-  --mini-sidebar-width:   70px;
-  --sidebar-bg:           #2b2b2b;
-  --sidebar-hover-bg:     #232323;
-  --sidebar-submenu-bg:   #1f2023;
+  // ── Gradientes (referencias a tokens de color) ────────────
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-medium), var(--color-primary-dark));
+  --gradient-success: linear-gradient(135deg, var(--color-success), var(--color-success-dark));
+  --gradient-danger:  linear-gradient(135deg, var(--color-danger), var(--color-danger-dark));
+  --gradient-surface: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-100) 100%);
+  --gradient-header:  linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+
+  // ── Layout principal ──────────────────────────────────────
+  --header-height:          60px;
+  --sidebar-width:          230px;
+  --mini-sidebar-width:     60px;
+  --page-container-padding: 15px;
+
+  // ── Sidebar — estructura ──────────────────────────────────
+  --sidebar-scrollbar-width:     4px;
+  --sidebar-item-padding-y:      var(--space-2-5);
+  --sidebar-submenu-indent:      50px;
+  --sidebar-active-border-width: 3px;
+  --sidebar-arrow-size:          7px;
+  --sidebar-arrow-border-width:  1.5px;
+
+  // ── Íconos ────────────────────────────────────────────────
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+
+  // ── Overlays ──────────────────────────────────────────────
+  --overlay-bg:        rgba(0, 0, 0, 0.4);
+  --modal-backdrop-bg: rgba(0, 0, 0, 0.5);
+
+  // Paleta sidebar — tema claro (AdminLTE skin-blue base)
+  --sidebar-bg:              #ffffff;
+  --sidebar-hover-bg:        #f9f9f9;
+  --sidebar-submenu-bg:      #f9f9f9;
+  --sidebar-text:            #8d97ad;
+  --sidebar-text-active:     var(--color-primary-accent);
+  --sidebar-subtext:         #8d97ad;
+  --sidebar-item-hover-bg:   rgba(0, 0, 0, 0.04);
+  --sidebar-item-active-bg:  rgba(66, 153, 225, 0.08);
+  --sidebar-arrow-color:     rgba(0, 0, 0, 0.3);
+  --sidebar-scrollbar:       rgba(0, 0, 0, 0.2);
+  --sidebar-shadow:          1px 0 20px rgba(0, 0, 0, 0.08);
 
   // ── Z-index ───────────────────────────────────────────────
-  --z-table-header:   10;
-  --z-modal-backdrop: 1050;
-  --z-modal:          1055;
+  --z-table-header:        10;
+  --z-sidebar-flyout-item: 10;
+  --z-overlay:             15;
+  --z-sidebar:             20;
+  --z-topbar:              50;
+  --z-sidebar-flyout:     100;
+  --z-modal-backdrop:    1050;
+  --z-modal:             1055;
 
   // ── Transiciones ──────────────────────────────────────────
-  --transition-fast:   all 0.15s linear;
-  --transition-base:   all 0.2s ease;
-  --transition-normal: all 0.3s ease;
+  --transition-fast:    all 0.15s linear;
+  --transition-base:    all 0.2s ease;
+  --transition-normal:  all 0.3s ease;
+  --transition-color:   color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  --transition-opacity: opacity 0.2s ease;
+  --transition-icon:    color 0.2s ease, opacity 0.2s ease;
+  --transition-arrow:   transform 0.25s ease, opacity 0.2s ease;
+  --transition-layout:  0.3s ease;
 }

@@ -5,14 +5,14 @@
 // proveía el bundle precompilado style.min.css (AdminLTE).
 //
 // Implementa el patrón fixed-header + fixed-sidebar con:
-//   - .topbar      → barra superior fija (z-index 50)
-//   - .left-sidebar → panel lateral fijo (z-index 20)
+//   - .topbar      → barra superior fija (--z-topbar)
+//   - .left-sidebar → panel lateral fijo (--z-sidebar)
 //   - .page-wrapper → área de contenido con offsets
 //
 // Body classes usadas (aplicadas por AdminLayoutComponent):
 //   skin-blue    → tema azul corporativo
 //   fixed-layout → header y sidebar fijos
-//   mini-sidebar → sidebar colapsado (60px)
+//   mini-sidebar → sidebar colapsado (--mini-sidebar-width)
 //   show-sidebar → sidebar visible en mobile
 // ============================================================
 
@@ -30,8 +30,8 @@
   left: 0;
   right: 0;
   height: var(--header-height);
-  z-index: 50;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: var(--z-topbar);
+  box-shadow: var(--shadow-topbar);
 }
 
 // ── Sidebar — panel lateral fijo ─────────────────────────
@@ -41,9 +41,10 @@
   left: 0;
   width: var(--sidebar-width);
   height: calc(100vh - var(--header-height));
-  z-index: 20;
+  z-index: var(--z-sidebar);
   background-color: var(--sidebar-bg);
-  transition: width 0.3s ease;
+  box-shadow: var(--sidebar-shadow);
+  transition: width var(--transition-layout);
   overflow: hidden;
 }
 
@@ -51,25 +52,22 @@
 .page-wrapper {
   margin-left: var(--sidebar-width);
   padding-top: var(--header-height);
-  transition: margin-left 0.3s ease;
+  transition: margin-left var(--transition-layout);
 }
 
-// ── Estado mini-sidebar: sidebar colapsado a 60px ─────────
-// Activado al cargar (<1170px) o al hacer clic en el toggle.
+// ── Estado mini-sidebar: sidebar colapsado ────────────────
+// El sidebar permanece en --mini-sidebar-width.
+// El hover NO expande el contenedor — cada li maneja su propio flyout.
 body.mini-sidebar {
-  .left-sidebar {
-    width: 60px;
+  .left-sidebar  { width: var(--mini-sidebar-width); }
+  .page-wrapper  { margin-left: var(--mini-sidebar-width); }
+}
 
-    // Expande al hacer hover para mostrar labels sin tener que clic
-    &:hover {
-      width: var(--sidebar-width);
-      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
-    }
-  }
-
-  .page-wrapper {
-    margin-left: 60px;
-  }
+// Permite que los flyouts de submenú desborden el contenedor sin recorte.
+// Solo en desktop mini mode (no en mobile overlay show-sidebar).
+body.mini-sidebar:not(.show-sidebar) {
+  .left-sidebar,
+  .scroll-sidebar { overflow: visible; }
 }
 
 // ── Fila de títulos de página ─────────────────────────────
@@ -77,8 +75,8 @@ body.mini-sidebar {
 // borde inferior que separa visualmente el título de la tarjeta.
 .page-titles {
   background: var(--color-white);
-  padding: 10px 15px;
-  margin: 0 -15px 20px -15px;   // compensa el padding del container-fluid
+  padding: var(--sidebar-item-padding-y) var(--page-container-padding);
+  margin: 0 calc(-1 * var(--page-container-padding)) var(--space-5) calc(-1 * var(--page-container-padding));
   border-bottom: 1px solid var(--color-border);
 
   h4.text-themecolor {
@@ -94,23 +92,18 @@ body.mini-sidebar {
   // Sidebar oculto fuera de pantalla por defecto
   .left-sidebar {
     left: calc(-1 * var(--sidebar-width));
-    width: var(--sidebar-width) !important;
-
-    // Sin hover-expand en mobile — se controla por JS con show-sidebar
-    &:hover {
-      width: var(--sidebar-width);
-      box-shadow: none;
-    }
+    width: var(--sidebar-width) !important;   // anula mini-sidebar en mobile
+    overflow: hidden !important;              // restaura overflow en mobile
   }
 
   // body.show-sidebar → sidebar visible (toggle desde topbar)
   body.show-sidebar .left-sidebar {
     left: 0;
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.35);
+    box-shadow: var(--shadow-sidebar-mobile);
   }
 
   .page-wrapper {
-    margin-left: 0 !important;
+    margin-left: 0 !important;               // anula mini-sidebar offset
   }
 
   // Overlay semitransparente detrás del sidebar cuando está abierto
@@ -118,8 +111,8 @@ body.mini-sidebar {
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 15;
+    background: var(--overlay-bg);
+    z-index: var(--z-overlay);
     pointer-events: none;
   }
 }

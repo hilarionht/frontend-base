@@ -10,11 +10,11 @@
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,.2) transparent;
+  scrollbar-color: var(--sidebar-scrollbar) transparent;
 
-  &::-webkit-scrollbar       { width: 4px; }
+  &::-webkit-scrollbar       { width: var(--sidebar-scrollbar-width); }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); border-radius: 4px; }
+  &::-webkit-scrollbar-thumb { background: var(--sidebar-scrollbar); border-radius: var(--border-radius-sm); }
 }
 
 // ------------------------------------------------------------
@@ -40,19 +40,19 @@
 .sidebar-nav > ul > li > a {
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: var(--sidebar-item-padding-y) !important;
 }
 
 // Ícono del nivel raíz — tamaño y alineación fijos
 .sidebar-nav > ul > li > a > i {
-  font-size: 1rem !important;
-  width: 20px !important;
-  min-width: 20px !important;
+  font-size: var(--font-size-lg) !important;
+  width: var(--icon-size-md) !important;
+  min-width: var(--icon-size-md) !important;
   text-align: center !important;
   flex-shrink: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
-  transition: color 0.2s ease;
+  transition: var(--transition-icon);
 }
 
 // Neutraliza el margin-left que AdminLTE pone en .hide-menu
@@ -65,19 +65,19 @@
 .sidebar-nav ul ul li a {
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: var(--space-2) !important;
 }
 
 // Íconos de subitems
 .sidebar-nav ul ul li a > i {
-  font-size: 0.875rem !important;
-  width: 16px !important;
-  min-width: 16px !important;
+  font-size: var(--font-size-base) !important;
+  width: var(--icon-size-sm) !important;
+  min-width: var(--icon-size-sm) !important;
   text-align: center !important;
   flex-shrink: 0 !important;
   margin: 0 !important;
   opacity: 0.85;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: var(--transition-icon);
 }
 
 .sidebar-nav ul ul li a:hover > i,
@@ -133,7 +133,7 @@
 #logoutModal .btn-danger:hover {
     background: linear-gradient(135deg, var(--color-danger-bs-dark) 0%, var(--color-danger-bs-darker) 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    box-shadow: var(--shadow-danger-hover);
 }
 
 #logoutModal .btn:focus {
@@ -150,7 +150,7 @@
 // ------------------------------------------------------------
 .modal-backdrop {
     z-index: var(--z-modal-backdrop);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--modal-backdrop-bg);
 }
 
 .modal-backdrop.show { opacity: 0.5; }
@@ -225,7 +225,7 @@ app-input-currency input[type="string"]:focus {
 
 .page-wrapper > .container-fluid {
   flex: 1;
-  padding: 0 15px 15px 15px;  // sin padding-top: lo maneja .page-titles
+  padding: 0 var(--page-container-padding) var(--page-container-padding) var(--page-container-padding); // sin padding-top: lo maneja .page-titles
 }
 
 .admin-main {
@@ -254,7 +254,7 @@ app-input-currency input[type="string"]:focus {
   width: 100%;
   background: var(--color-white);
   border-top: 1px solid var(--color-border);
-  padding: 10px 15px;
+  padding: var(--sidebar-item-padding-y) var(--page-container-padding);
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
 }
@@ -275,7 +275,7 @@ app-input-currency input[type="string"]:focus {
 // ------------------------------------------------------------
 .badge {
     padding: var(--space-1) var(--space-3);
-    border-radius: 20px;
+    border-radius: var(--border-radius-pill);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
 }
